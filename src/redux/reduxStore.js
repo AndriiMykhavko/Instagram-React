@@ -4,12 +4,12 @@ import { reducer as formReducer } from "redux-form";
 import { authReducer } from "./authReducer";
 
 let reducers = combineReducers({
-    auth: authReducer,
+  auth: authReducer,
   form: formReducer,
 });
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
-// window.store = store;
+window.store = store;
 
 export default store;

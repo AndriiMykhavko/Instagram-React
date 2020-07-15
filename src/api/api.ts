@@ -2,10 +2,10 @@
 import * as firebase from "firebase";
 
 export const authAPI = {
-  login(email, password) {
+  login(email: string, password: string) {
     return firebase.auth().signInWithEmailAndPassword(email, password);
   },
-  registration(email, password) {
+  registration(email: string, password: string) {
     return firebase.auth().createUserWithEmailAndPassword(email, password);
   },
   logout() {
