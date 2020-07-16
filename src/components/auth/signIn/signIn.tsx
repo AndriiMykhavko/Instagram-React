@@ -4,7 +4,7 @@ import { Redirect, Link } from 'react-router-dom';
 import { required, maxLengthCreator, minLengthCreator } from '../../../utils/validators/validator';
 import { FormControl } from '../../common/formsControl/formsControl';
 import { connect } from 'react-redux';
-import { login } from '../../../redux/authReducer'
+import { login, googleAuth } from '../../../redux/authReducer'
 import './signInStyles.scss'
 import phone from '../../../assets/images/phone.png'
 
@@ -56,7 +56,7 @@ const Login = (props: any) => {
             <h1>Instagram</h1>
             <LoginReduxForm onSubmit={onSubmit} />
             <div className="or">OR</div>
-            <button className="googleButton signInButton">Sing In with Google</button>
+            <button className="googleButton signInButton" onClick={props.googleAuth}>Sing In with Google</button>
           </div>
           <div className="wrapperRedirectButton">
               If you dont have account,<Link to="/signUp" >SignUp</Link>
@@ -70,4 +70,4 @@ const mapStateToProps = (state: any) => ({
    isAuth: state.auth.isAuth
 })
 
-export default connect(mapStateToProps, {login}) (Login);
+export default connect(mapStateToProps, { login, googleAuth }) (Login);

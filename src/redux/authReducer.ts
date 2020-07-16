@@ -45,12 +45,18 @@ export const registration = (email: string, password: string) => (dispatch: any)
     .registration(email, password)
     .then((response: any) => {
       if(response.user.email.length !== 0) {
-        dispatch(logInUser())
+        // dispatch(logInUser())
       }
       console.log(response)
     })
     .catch((error: any) => alert(error));
 };
+
+export const googleAuth = () => {
+  authAPI
+  .googleAuth()
+  .then( (response: any) => console.log(response))
+}
 
 export const logout = () => (dispatch: any) => {
   authAPI.logout().then(dispatch(logoutUser()));
