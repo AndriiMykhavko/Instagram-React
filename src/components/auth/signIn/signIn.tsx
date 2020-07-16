@@ -55,7 +55,7 @@ const Login = (props: any) => {
           <div className="wrapperForm">
             <h1>Instagram</h1>
             <LoginReduxForm onSubmit={onSubmit} />
-            <div>OR</div>
+            <div className="or">OR</div>
             <button className="googleButton signInButton">Sing In with Google</button>
           </div>
           <div className="wrapperRedirectButton">
