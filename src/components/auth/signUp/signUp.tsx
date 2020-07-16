@@ -28,12 +28,9 @@ const SignUpForm: React.FC <IProps> = (props) => {
               <Field placeholder={"Password"} el="input" type="password" validate={[required, minLengthField7, maxLendthField10]} name={"password"} component={FormControl} />
             </div>
             <div>
-              <button>Sign Up</button>
+              <button className="signInButton">Sign Up</button>
             </div>
           </form>
-          <div>
-            <Link to="/" >SignIn</Link>
-          </div>
         </>
     )
 }
@@ -50,10 +47,21 @@ const Login = (props: any) => {
         return <Redirect to={"/main"} />
     }
 
-    return <div>
-        <h1>Sign Up</h1>
-        <LoginReduxForm onSubmit={onSubmit} />
-    </div>
+    return (
+      <div className="wrapperLogin">
+        <div className="width100">
+          <div className="wrapperForm">
+            <h1>Instagram</h1>
+            <LoginReduxForm onSubmit={onSubmit} />
+            <div>OR</div>
+            <button className="googleButton signInButton">Sing In with Google</button>
+          </div>
+          <div className="wrapperRedirectButton">
+              If you have account,<Link to="/" >SignIn</Link>
+          </div>
+        </div>
+      </div>
+    )
     
 }
 

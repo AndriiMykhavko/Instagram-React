@@ -9,6 +9,9 @@ import store from "./redux/reduxStore";
 import * as firebase from "firebase";
 import firebaseConfig from "./firebaseConfig";
 
+// require('dotenv').config()
+console.log(process.env.REACT_APP_API_KEY)
+
 firebase.initializeApp(firebaseConfig);
 
 ReactDOM.render(
