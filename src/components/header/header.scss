@@ -1,0 +1,28 @@
+.headerWrapper{
+    background-color: #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #DBDBDB;
+    border-top: 1px solid #DBDBDB;;
+    h1{
+        margin: 0;
+        font-family: 'Baloo Da 2', cursive;
+    }
+    button{
+        padding: 7px 15px;
+        background-color: #404040;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: 'Sora', sans-serif;
+        &:hover{
+            background-color: #8c8c8c;
+        }
+        &:focus{
+            outline: none;
+        }
+    }
+}

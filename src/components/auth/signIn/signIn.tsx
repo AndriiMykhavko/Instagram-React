@@ -20,10 +20,10 @@ const SignInForm: React.FC <IProps> = (props) => {
     return (
       <>
         <form onSubmit={props.handleSubmit} >
-          <div>
+          <div className="margBottom">
             <Field placeholder={"Email"} el="input" type="text" validate={[required]} name={"email"} component={FormControl} />
           </div>
-          <div>
+          <div className="margBottom">
             <Field placeholder={"Password"} el="input" type="password" validate={[required, maxLengthField10, minLengthField7]} name={"password"} component={FormControl} />
           </div>
           <div>

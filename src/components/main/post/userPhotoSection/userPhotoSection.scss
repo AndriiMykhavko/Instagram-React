@@ -1,0 +1,23 @@
+.ownerIcon{
+  background-color: #DBDBDB;
+  border-radius: 20px;
+  height: 42px;
+  width: 42px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  i{
+    font-size: 32px;
+    color: #fff;
+  }
+}
+
+.ownerIconOutline{
+  box-shadow: 0 0 0pt 2pt darkgrey;
+  border-radius: 25px;
+  padding: 5px;
+}
+.wrapperIcon{
+  display: flex;
+  margin-right: 15px;
+}

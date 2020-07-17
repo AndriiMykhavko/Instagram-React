@@ -4,9 +4,8 @@ import { Route } from 'react-router-dom';
 import SignInForm from './components/auth/signIn/signIn';
 import SignUpForm from './components/auth/signUp/signUp'
 import mainContainer from './components/main/mainContainer';
-// import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import * as firebase from "firebase";
-import store from './redux/reduxStore';
+// import store from './redux/reduxStore';
 import { logInUser } from './redux/authReducer'
 import { connect } from 'react-redux';
 
@@ -15,19 +14,6 @@ interface IProps{
 }
 
 class App extends React.Component<IProps> {
-
-  // uiConfig = {
-  //   // Popup signin flow rather than redirect flow.
-  //   signInFlow: 'popup',
-  //   // We will display Google as auth providers.
-  //   signInOptions: [
-  //     firebase.auth.GoogleAuthProvider.PROVIDER_ID
-  //   ],
-  //   callbacks: {
-  //     // Avoid redirects after sign-in.
-  //     signInSuccessWithAuthResult: () => false
-  //   }
-  // };
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged(

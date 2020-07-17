@@ -1,8 +1,10 @@
 import React from 'react'
-import { Main } from './main'
 import { connect } from 'react-redux'
-import { logout } from '../../redux/authReducer'
 import { Redirect } from 'react-router-dom'
+import HeaderConatiner from '../header/headerContainer'
+import './mainContainer.scss'
+import AddPostButton from './addPostButton/addPostButton'
+import PostContainer from './post/postContainer'
 
 interface IProps {
   logout: any,
@@ -12,9 +14,20 @@ interface IProps {
 
 class MainContainer extends React.Component<IProps>{
   render() {
-    return(<>
-    {this.props.isAuth ? <Main logout={this.props.logout}/> : <Redirect to={"/"} />}
-    </>)
+    if (!this.props.isAuth) {
+      return <Redirect to={"/"} />
+    } 
+    return(
+    <>
+      <HeaderConatiner />
+      <div className="wrapperToMain">
+        <AddPostButton />
+        <PostContainer />
+        {/* <Main logout={this.props.logout}/> */}
+      {/* {this.props.isAuth ? <Main logout={this.props.logout}/> : <Redirect to={"/"} />} */}
+      </div>
+    </>
+    )
   }
 }
 
@@ -24,4 +37,4 @@ const MapStateToProps = (state: any) => {
   }
 }
 
-export default connect (MapStateToProps, {logout}) (MainContainer)
+export default connect (MapStateToProps, {}) (MainContainer)

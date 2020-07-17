@@ -1,0 +1,33 @@
+.addCommentSection{
+  margin-top: 15px;
+  padding: 15px 15px;
+  border-top: 1px solid #DBDBDB;
+}
+.texAreaSection{
+  form{
+    display: flex;
+    justify-content: space-between;
+    textarea{
+      width: 500px;
+      resize: none;
+      max-height: 80px;
+      padding: 0;
+      border: none;
+      font-family: 'Karla', sans-serif;
+      &:focus{
+        outline: none;
+      }
+    }
+    button{
+      border: none;
+      background-color: transparent;
+      color: #0F9BF7;
+      cursor: pointer;
+      font-weight: bold;
+      padding: 0;
+      &:focus{
+        outline: none;
+      }
+    }
+  }
+}

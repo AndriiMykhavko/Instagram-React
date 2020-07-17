@@ -1,0 +1,64 @@
+.postWrapper{
+  border: 1px solid #DBDBDB;
+  margin: 30px 0;
+  background-color: #fff;
+  width: 600px;
+}
+
+.postOwnerInfo{
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  img{
+    height: 32px;
+    width: 32px;
+    display: flex;
+  }
+  a{
+    text-decoration: none;
+    color: #262626;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+}
+
+.ownerPhoto{
+  img{
+    width: 100%;
+  }
+}
+
+.postButtons{
+  font-size: 24px;
+  color: #262626;
+  padding: 10px 15px;
+  display: flex;
+  flex-direction: column;
+  .likesButton{
+    cursor: pointer;
+    display: flex;
+    height: 24px;
+    width: 24px;
+    &:hover{
+      color: #ED4956;
+    }
+  }
+  .likesCount{
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+}
+
+.postText{
+  font-family: 'Karla', sans-serif;
+  padding: 0 15px;
+  span{
+    color: #262626;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+}
+
+// .addCommentSection{
+//   margin-top: 15px;
+// }
