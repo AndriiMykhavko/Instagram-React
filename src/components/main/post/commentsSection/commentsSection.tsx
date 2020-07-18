@@ -1,7 +1,7 @@
 import React from 'react'
 import './commentSection.scss'
 import AddNewPostFromContainer from './addNewPostForm/addNewPostFromContainer'
-import CommentContainer from './comments/commentsContainer'
+import CommentContainer from './comment/commentContainer'
 
 const CommentsSection: React.FC = (props: any) => {
 
@@ -12,8 +12,10 @@ const CommentsSection: React.FC = (props: any) => {
   return(
       <div className="addCommentSection">
         <div className="texAreaSection">
-          {/* <AddNewPostForm onSubmit={addNewComment}/> */}
           <AddNewPostFromContainer />
+        </div>
+        <div className="commentWrapper">
+          <CommentContainer />
           <CommentContainer />
         </div>
       </div>

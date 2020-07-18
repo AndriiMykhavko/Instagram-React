@@ -1,3 +1,16 @@
 .margTop{
   margin-top: 3px;
 }
+
+.addNewPostForm{
+  textarea{
+    border: none !important; 
+  }
+  span{
+    display: none;
+  }
+  .dissabledButton{
+    color: #9cd6fc;
+    cursor: auto;
+  }
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import { FormControl } from '../../../../common/formsControl/formsControl';
-import { maxLengthCreator } from "../../../../../utils/validators/validator";
+import { maxLengthCreator, required } from "../../../../../utils/validators/validator";
 import { Field, reduxForm } from "redux-form";
 import './addNewPostForm.scss'
 import TextareaAutosize from 'react-textarea-autosize';
@@ -11,11 +11,12 @@ const AddNewPostForm = (props: any) => {
   return (
       <form className="addNewPostForm" onSubmit={props.handleSubmit} >
               <div className="margTop">
-                  <Field component={FormControl} el={TextareaAutosize} name="newMessageBody" validate={[maxLendthField500]} 
+                  <Field component={FormControl} el={TextareaAutosize} name="newMessageBody" validate={[required, maxLendthField500]} 
                   placeholder={"Add your comment..."} />
               </div>
               <div>
-                  <button>Publish</button>
+              {props.invalid ? <button className="dissabledButton" disabled>Publish</button> : <button>Publish</button>}
+                  {/* <button>Publish</button> */}
               </div>
       </form>
   )

@@ -1,6 +1,6 @@
 import React from 'react'
 import './comment.scss'
-import { UserPhotoSection } from '../../../userPhotoSection/userPhotoSection'
+import { UserPhotoSection } from '../../userPhotoSection/userPhotoSection'
 
 export const Comment: React.FC = (props: any) => {
   return(
