@@ -1,0 +1,47 @@
+.margTop{
+  margin-top: 3px;
+}
+
+.addNewPostForm{
+  textarea{
+    border: 1px solid #DBDBDB !important;
+    width: 100%;
+    resize: none;
+    height: 100px;
+    padding: 0;
+    border: none;
+    font-family: 'Karla', sans-serif;
+    padding: 15px;
+    margin-top: 20px;
+    box-sizing: border-box;
+    &:focus{
+      outline: none;
+    }
+  }
+  span{
+    display: none;
+  }
+  .modalButton{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+    button{
+      border: none;
+      background-color: #262626;
+      color: #fff;
+      padding: 10px 15px;
+      border-radius: 5px;
+      font-family: 'Sora', sans-serif;
+      &:hover{
+        background-color: #8c8c8c;
+        transition: all 0.2s;
+      }
+      &:focus{
+        outline: none;
+      }
+    }
+    .dissabledButton{
+      visibility: hidden;
+    }
+  }
+}

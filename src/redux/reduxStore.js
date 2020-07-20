@@ -2,9 +2,11 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunkMiddleware from "redux-thunk";
 import { reducer as formReducer } from "redux-form";
 import { authReducer } from "./authReducer";
+import { postsReducer } from "./postsReaducer";
 
 let reducers = combineReducers({
   auth: authReducer,
+  posts: postsReducer,
   form: formReducer,
 });
 

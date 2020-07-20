@@ -12,10 +12,30 @@
     background: none;
     font-weight: bold;
     color: #000;
+    box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
     -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
     -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
   }
   &:focus{
     outline: none;
+  }
+}
+
+.closePostButtonWrapper{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.closePostButton{
+  border: none;
+  background-color: transparent;
+  color: #AAAAAA;
+  font-size: 20px;
+  &:hover{
+    cursor: pointer;
+  }
+  &:focus{
+    outline: none;
+    font-size: 15px;
   }
 }

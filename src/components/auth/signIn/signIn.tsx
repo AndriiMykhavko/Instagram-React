@@ -9,9 +9,6 @@ import './signInStyles.scss'
 import phone from '../../../assets/images/phone.png'
 
 
-const maxLengthField10 = maxLengthCreator(10);
-const minLengthField7 = minLengthCreator(7);
-
 interface IProps {
   handleSubmit: any
 }
@@ -24,7 +21,7 @@ const SignInForm: React.FC <IProps> = (props) => {
             <Field placeholder={"Email"} el="input" type="text" validate={[required]} name={"email"} component={FormControl} />
           </div>
           <div className="margBottom">
-            <Field placeholder={"Password"} el="input" type="password" validate={[required, maxLengthField10, minLengthField7]} name={"password"} component={FormControl} />
+            <Field placeholder={"Password"} el="input" type="password" validate={[required]} name={"password"} component={FormControl} />
           </div>
           <div>
             <button className="signInButton">Sign In</button>

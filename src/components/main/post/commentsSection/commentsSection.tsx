@@ -1,18 +1,13 @@
 import React from 'react'
 import './commentSection.scss'
-import AddNewPostFromContainer from './addNewPostForm/addNewPostFromContainer'
+import AddNewCommentFromContainer from './addNewPostForm/addNewCommentFromContainer'
 import CommentContainer from './comment/commentContainer'
 
 const CommentsSection: React.FC = (props: any) => {
-
-  // const addNewComment = (value: any) => {
-  //   console.log(value)
-  // }
-
   return(
       <div className="addCommentSection">
         <div className="texAreaSection">
-          <AddNewPostFromContainer />
+          <AddNewCommentFromContainer />
         </div>
         <div className="commentWrapper">
           <CommentContainer />

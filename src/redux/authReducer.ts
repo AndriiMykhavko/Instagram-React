@@ -1,8 +1,6 @@
 import { authAPI } from "../api/api";
 
 const SET_USER_AUTH = "SET_USER_AUTH";
-const LOG_IN = "LOG_IN";
-const SET_AUTH = "SET_AUTH";
 
 const initialState = {
   isAuth: false,

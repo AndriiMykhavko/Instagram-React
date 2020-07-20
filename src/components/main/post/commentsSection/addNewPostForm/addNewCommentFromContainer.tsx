@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import AddNewPostForm from './addNewPostForm'
+import AddNewCommentForm from './addNewCommentForm'
 
 
 class AddNewPostContainer extends React.Component{
@@ -10,7 +10,7 @@ class AddNewPostContainer extends React.Component{
 
   render() {
     return(
-      <AddNewPostForm onSubmit={this.addNewComment}/>
+      <AddNewCommentForm onSubmit={this.addNewComment}/>
     )
   }
 }

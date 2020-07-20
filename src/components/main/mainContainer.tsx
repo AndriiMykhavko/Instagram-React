@@ -3,8 +3,9 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import HeaderConatiner from '../header/headerContainer'
 import './mainContainer.scss'
-import AddPostButton from './addPostButton/addPostButton'
+// import AddPostButton from './addPostButton/addPostButton'
 import PostContainer from './post/postContainer'
+import ModalWindow from './post/modalWindow/modalWindow'
 
 interface IProps {
   logout: any,
@@ -21,7 +22,8 @@ class MainContainer extends React.Component<IProps>{
     <>
       <HeaderConatiner />
       <div className="wrapperToMain">
-        <AddPostButton />
+        {/* <AddPostButton /> */}
+        <ModalWindow />
         <PostContainer />
         {/* <Main logout={this.props.logout}/> */}
       {/* {this.props.isAuth ? <Main logout={this.props.logout}/> : <Redirect to={"/"} />} */}
