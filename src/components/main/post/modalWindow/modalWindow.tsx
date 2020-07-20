@@ -37,7 +37,7 @@ function ModalWindow(){
     setIsOpen(false);
   }
 
-  const addNewPost = (value) => {
+  const addNewPost = (value: any) => {
     return console.log(value)
   }
 

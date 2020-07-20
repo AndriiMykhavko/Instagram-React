@@ -2,15 +2,23 @@ import React from 'react'
 import './imgPreview.scss'
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-class UploadPhoto extends React.Component {
-  constructor(props){
+interface IProps{
+  input: any
+}
+
+interface IState{
+  file: any
+}
+
+class UploadPhoto extends React.Component<IProps, IState>  {
+  constructor(props: any){
     super(props)
     this.state = {
       file: null
     }
     this.handleChange = this.handleChange.bind(this)
   }
-  handleChange(event) {
+  handleChange(event: any) {
     const { input: { onChange } } = this.props
     onChange(event.target.files[0])
     this.setState({
@@ -18,11 +26,10 @@ class UploadPhoto extends React.Component {
     })
   }
   render() {
-    // const { input: { value } } = this.props
     return (
       <>
-        <input type="file" name="file" id="file" onChange={this.handleChange} className="inputfile" />
-        <label for="file"><i class="far fa-image"></i> Choose a photo... </label>
+        <input type="file" name="photo" id="photoFile" onChange={this.handleChange} className="inputfile" />
+        <label htmlFor="photoFile"><i className="far fa-image"></i> Choose a photo... </label>
         <div className="previewImg">
         <img src={this.state.file}/>
         </div>
