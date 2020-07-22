@@ -35,13 +35,16 @@
       &:hover{
         background-color: #8c8c8c;
         transition: all 0.2s;
+        cursor: pointer;
       }
       &:focus{
         outline: none;
       }
     }
     .dissabledButton{
-      visibility: hidden;
+      // visibility: hidden;
+      background-color: #8c8c8c;
+      cursor: auto !important;
     }
   }
 }

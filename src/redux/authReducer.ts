@@ -4,7 +4,7 @@ const SET_USER_AUTH = "SET_USER_AUTH";
 
 const initialState = {
   isAuth: false,
-  email: ''
+  name: ''
 };
 
 export const authReducer = (state = initialState, action: any) => {
@@ -12,7 +12,7 @@ export const authReducer = (state = initialState, action: any) => {
     case SET_USER_AUTH: {
       return {
         isAuth: action.isAuth,
-        email: action.email
+        name: action.displayName
       };
     }
     default:
@@ -20,10 +20,10 @@ export const authReducer = (state = initialState, action: any) => {
   }
 };
 
-export const logInUser = (email: string, isAuth = true) => ({
+export const logInUser = (displayName: string, isAuth = true) => ({
   type: SET_USER_AUTH,
   isAuth,
-  email
+  displayName
 });
 export const logoutUser = (email = '', isAuth = false) => ({
   type: SET_USER_AUTH,
@@ -43,12 +43,14 @@ export const login = (email: string, password: string) => (dispatch: any) => {
     .catch((error: any) => alert(error));
 };
 
-export const registration = (email: string, password: string) => (dispatch: any) => {
+export const registration = ( name: string, email: string, password: string) => (dispatch: any) => {
   authAPI
     .registration(email, password)
     .then((response: any) => {
       if(response.user.email.length !== 0) {
-        // dispatch(logInUser())
+        response.user.updateProfile({
+          displayName: name,
+        })
       }
       console.log(response)
     })

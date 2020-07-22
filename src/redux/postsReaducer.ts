@@ -19,10 +19,12 @@ export const postsReducer = (state = initialState, action: any) => {
         postImg: action.postData.postImage,
         postData: action.postData.postData,
         likes: action.postData.whoLikedPost,
-        postComments: action.postData.postComments 
+        postComments: action.postData.postComments,
+        uploadTime: action.postData.uploadTime
       }
       return {
-        ...state,
+        //...state,
+        // posts: [...state.posts, newPost],
         posts: [...state.posts, newPost],
       };
     }
@@ -52,9 +54,9 @@ export const setCommetn = (comments: any) => ({
   comments
 });
 
-export const addPostIntoDB = (email: string, postImage: any, postData: string) => (dispatch: any) => {
+export const addPostIntoDB = (name: string, postImage: any, postData: string) => (dispatch: any) => {
   addPostAPI
-    .uploadImage(email, postImage)
+    .uploadImage(name, postImage)
     .on(
       "state_changed",
       (snapshot:any) =>{},
@@ -64,21 +66,14 @@ export const addPostIntoDB = (email: string, postImage: any, postData: string) =
       () => {
         storage
           .ref("images")
-          .child(email + '/' + postImage.name)
+          .child(name + '/' + postImage.name)
           .getDownloadURL()
           .then((url) => {
-            var todayDate = new Date();
-            var currYear = todayDate.getFullYear();
-            var currMonth = todayDate.getMonth()+1;
-            var currDay = todayDate.getDate();
-            const currHour = todayDate.getHours();
-            const currMinutes = todayDate.getMinutes();
-            const currSeconds = todayDate.getSeconds();
-            
-            const time = currDay + '/' + currMonth + '/' + currYear + ' ' + currHour + ':' + currMinutes + ':' + currSeconds
+
+            const now = new Date().toLocaleString();
             
             addPostAPI
-            .uploadPostData(email, url, postData, time)
+            .uploadPostData(name, url, postData, now)
             .then(
               //  addPostAPI
               //  .getAllPosts()

@@ -3,6 +3,11 @@
   margin: 30px 0;
   background-color: #fff;
   width: 600px;
+  .postOwnerName{
+    text-decoration: none;
+    color: #262626;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
 }
 
 .postOwnerInfo{
@@ -14,16 +19,14 @@
     width: 32px;
     display: flex;
   }
-  a{
-    text-decoration: none;
-    color: #262626;
-    font-family: 'Noto Sans KR', sans-serif;
-  }
 }
 
 .ownerPhoto{
+  display: flex;
+  justify-content: center;
   img{
-    width: 100%;
+    max-width: 100%;
+    // width: 100%;
   }
 }
 
@@ -47,6 +50,9 @@
     font-size: 14px;
     font-weight: bold;
     font-family: 'Noto Sans KR', sans-serif;
+  }
+  .postData{
+    font-size: 14px;
   }
 }
 

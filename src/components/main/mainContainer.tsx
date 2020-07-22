@@ -10,7 +10,7 @@ import ModalWindowContainer from './Posts/post/modalWindow/modalWindowContainer'
 interface IProps {
   logout: any,
   state: any,
-  isAuth: boolean
+  isAuth: boolean,
 }
 
 class MainContainer extends React.Component<IProps>{

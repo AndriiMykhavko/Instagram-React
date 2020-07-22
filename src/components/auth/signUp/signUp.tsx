@@ -18,13 +18,13 @@ const SignUpForm: React.FC <IProps> = (props) => {
     return (
         <>
           <form onSubmit={props.handleSubmit} >
-           {/* <div>
-              <Field placeholder={"Name"} el="input" type="text" validate={[required, maxLendthField30]} name={"name"} component={FormControl} />
-            </div> */}
-            <div>
+           <div className="margBottom">
+              <Field placeholder={"Name"} el="input" type="text" validate={[required, maxLendthField10]} name={"name"} component={FormControl} />
+            </div>
+            <div className="margBottom">
               <Field placeholder={"Email"} el="input" type="text" validate={[required]} name={"email"} component={FormControl} />
             </div>
-            <div>
+            <div className="margBottom">
               <Field placeholder={"Password"} el="input" type="password" validate={[required, minLengthField7, maxLendthField10]} name={"password"} component={FormControl} />
             </div>
             <div>
@@ -39,7 +39,8 @@ const LoginReduxForm = reduxForm({form: 'login'})(SignUpForm)
 
 const Login = (props: any) => {
     const onSubmit = (formData: any) => {
-        props.registration(formData.email, formData.password);
+        //props.registration(formData.email, formData.password);
+        props.registration(formData.name, formData.email, formData.password);
         //console.log(formData);
     }
 

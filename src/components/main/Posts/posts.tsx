@@ -1,23 +1,22 @@
 import React from 'react'
-import PostContainer from './post/postContainer'
+// import PostContainer from './post/postContainer'
 import Post from './post/post'
+import { IPost } from './post/post'
 
 interface IProps{
-  posts: any,
-  postsElements: any
-  likes: [],
-  owner: string,
-  postComments: [],
-  postID: string,
-  postImg: string,
+  posts: IPost[],
 }
 
 const Posts = (props: IProps): JSX.Element => {
-  console.log(props)
-  debugger
-  let postsElements = props.posts.map<JSX.Element[]>( (post: any) => <Post likes={props.likes} owner={props.owner} postComments={props.postComments} postID={props.postID} postImg={props.postImg}/> )
+  let postsElements = props.posts.map( (post: IPost) => 
+  <Post likes={post.likes} owner={post.owner} key={post.postID}
+        postComments={post.postComments} postID={post.postID} postImg={post.postImg}
+        postData={post.postData} uploadTime={post.uploadTime}/> 
+  )
   return(
-    {postsElements}
+    <div>
+      {postsElements}
+    </div>
   )
 }
 

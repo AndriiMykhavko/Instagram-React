@@ -5,20 +5,20 @@ import { addPostIntoDB } from '../../../../../redux/postsReaducer'
 
 interface IProps {
   addPostIntoDB: any,
-  email: any
+  name: any
 }
 
 class ModalWindowContainer extends React.Component<IProps> {
   render() {
     return(
-      <ModalWindow addPostIntoDB={this.props.addPostIntoDB} email={this.props.email}/>
+      <ModalWindow addPostIntoDB={this.props.addPostIntoDB} name={this.props.name}/>
     )
   }
 }
 
 const mapStateToProps = (state: any) => {
   return {
-    email: state.auth.email
+    name: state.auth.name
   }
 }
 export default connect (mapStateToProps, {addPostIntoDB})(ModalWindowContainer)

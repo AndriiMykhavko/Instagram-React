@@ -11,17 +11,16 @@ import { setPost } from './redux/postsReaducer';
 
 interface IProps{
   logInUser: any,
-  email: any,
   setPost?: any
 }
 
 class App extends React.Component<IProps> {
-
   componentDidMount() {
     firebase.auth().onAuthStateChanged(
         (user) => {
           if (user !== null) {
-            this.props.logInUser(user.email);
+            // console.log(user.uid)
+            this.props.logInUser(user.displayName);
           }
         }
     );
@@ -29,13 +28,18 @@ class App extends React.Component<IProps> {
     firebase.firestore().collection("usersPosts")
     .orderBy("uploadTime", "desc").onSnapshot((snapshot) => {
       snapshot.forEach(
-        // doc => console.log(doc.data())
+        //doc => console.log(doc.data())
         // const postData = []
         // doc => postData.push(doc.id, ...doc.data())
         // const postData = []
         doc => this.props.setPost(doc.id, doc.data())
         )
     })
+  //   firebase.firestore().collection("usersPosts")
+  //   .onSnapshot(function(doc: any) {
+  //     var source = doc.metadata.hasPendingWrites ? "Local" : "Server";
+  //     console.log(source, " data: ", doc.data());
+  // });
   }
 
   render() {
@@ -53,7 +57,6 @@ class App extends React.Component<IProps> {
 const mapStateToProps = (state: any) => {
   return{
     isAuth: state.auth.isAuth,
-    email: state.auth.email
   }
 }
 

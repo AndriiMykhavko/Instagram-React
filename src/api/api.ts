@@ -31,14 +31,14 @@ export const authAPI: any = {
 };
 
 export const addPostAPI: any = {
-  uploadImage(email: string, image: any) {
-    return firebase.storage().ref(`images/` + email + `/` + image.name).put(image)
+  uploadImage(name: string, image: any) {
+    return firebase.storage().ref(`images/` + name + `/` + image.name).put(image)
   },
-  uploadPostData(email: string, postImage: string, postData: string, uploadTime: string) {
+  uploadPostData(name: string, postImage: string, postData: string, uploadTime: string) {
 
     return firebase.firestore().collection("usersPosts").doc()
     .set({
-      name: email,
+      name: name,
       postImage: postImage,
       postData: postData,
       uploadTime: uploadTime,

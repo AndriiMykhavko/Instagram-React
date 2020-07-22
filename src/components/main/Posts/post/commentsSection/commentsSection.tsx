@@ -9,10 +9,10 @@ const CommentsSection: React.FC = (props: any) => {
         <div className="texAreaSection">
           <AddNewCommentFromContainer />
         </div>
-        <div className="commentWrapper">
+        {/* <div className="commentWrapper">
           <CommentContainer />
           <CommentContainer />
-        </div>
+        </div> */}
       </div>
   )
 }

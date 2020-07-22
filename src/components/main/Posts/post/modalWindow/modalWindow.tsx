@@ -23,7 +23,7 @@ Modal.setAppElement('#root')
  
 interface IProps{
   addPostIntoDB?: any,
-  email?: any
+  name?: any
 }
 
 const ModalWindow: React.FC<IProps> = (props: any) => {
@@ -44,7 +44,7 @@ const ModalWindow: React.FC<IProps> = (props: any) => {
 
   const addNewPost = (value: any) => {
     // console.log(value.newFileBody.name)
-    props.addPostIntoDB(props.email, value.postImage, value.postMessage)
+    props.addPostIntoDB(props.name, value.postImage, value.postMessage)
     closeModal()
     // return console.log(value.newMessageBody)
     // value.newFileBody.name
