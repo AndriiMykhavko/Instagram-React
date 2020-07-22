@@ -10,6 +10,8 @@ import * as firebase from "firebase";
 import firebaseConfig from "./firebaseConfig";
 
 firebase.initializeApp(firebaseConfig);
+export const storage = firebase.storage();
+// export const storageRef = storage.ref();
 
 ReactDOM.render(
   <React.StrictMode>

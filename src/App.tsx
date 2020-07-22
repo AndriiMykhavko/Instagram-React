@@ -5,12 +5,14 @@ import SignInForm from './components/auth/signIn/signIn';
 import SignUpForm from './components/auth/signUp/signUp'
 import mainContainer from './components/main/mainContainer';
 import * as firebase from "firebase";
-// import store from './redux/reduxStore';
 import { logInUser } from './redux/authReducer'
 import { connect } from 'react-redux';
+import { setPost } from './redux/postsReaducer';
 
 interface IProps{
-  logInUser: any
+  logInUser: any,
+  email: any,
+  setPost?: any
 }
 
 class App extends React.Component<IProps> {
@@ -19,10 +21,21 @@ class App extends React.Component<IProps> {
     firebase.auth().onAuthStateChanged(
         (user) => {
           if (user !== null) {
-            this.props.logInUser();
+            this.props.logInUser(user.email);
           }
         }
     );
+    // addPostAPI.getAllPosts()
+    firebase.firestore().collection("usersPosts")
+    .orderBy("uploadTime", "desc").onSnapshot((snapshot) => {
+      snapshot.forEach(
+        // doc => console.log(doc.data())
+        // const postData = []
+        // doc => postData.push(doc.id, ...doc.data())
+        // const postData = []
+        doc => this.props.setPost(doc.id, doc.data())
+        )
+    })
   }
 
   render() {
@@ -39,9 +52,10 @@ class App extends React.Component<IProps> {
 
 const mapStateToProps = (state: any) => {
   return{
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    email: state.auth.email
   }
 }
 
 
-export default connect(mapStateToProps, {logInUser})(App);
+export default connect(mapStateToProps, {logInUser, setPost})(App);

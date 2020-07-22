@@ -2,11 +2,21 @@ import React from 'react'
 import './post.scss'
 import { Link } from 'react-router-dom'
 // import '@fortawesome/fontawesome-free/css/all.min.css';
-import postPhoto from '../../../assets/images/postPhoto.jpg'
+import postPhoto from '../../../../assets/images/postPhoto.jpg'
 import CommentsSection from './commentsSection/commentsSection'
 import { UserPhotoSection } from './userPhotoSection/userPhotoSection';
 
-const Post: React.FC = (props: any) => {
+interface IProps{
+  likes: [],
+  owner: string,
+  postComments: [],
+  postID: string,
+  postImg: string,
+  posts: any,
+  Post: any
+}
+
+const Post = (props: any) => {
   return(
   <div className="postWrapper">
 

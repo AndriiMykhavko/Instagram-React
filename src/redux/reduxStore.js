@@ -6,7 +6,7 @@ import { postsReducer } from "./postsReaducer";
 
 let reducers = combineReducers({
   auth: authReducer,
-  posts: postsReducer,
+  postsPage: postsReducer,
   form: formReducer,
 });
 

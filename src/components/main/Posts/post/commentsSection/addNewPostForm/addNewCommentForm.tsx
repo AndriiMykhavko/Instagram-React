@@ -1,6 +1,6 @@
 import React from "react";
-import { FormControl } from '../../../../common/formsControl/formsControl';
-import { maxLengthCreator, required } from "../../../../../utils/validators/validator";
+import { FormControl } from '../../../../../common/formsControl/formsControl';
+import { maxLengthCreator, required } from "../../../../../../utils/validators/validator";
 import { Field, reduxForm } from "redux-form";
 import './addNewCommentForm.scss'
 import TextareaAutosize from 'react-textarea-autosize';

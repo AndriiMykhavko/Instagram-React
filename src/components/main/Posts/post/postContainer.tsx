@@ -6,7 +6,7 @@ class PostContainer extends React.Component{
   render() {
     return(
       <>
-        <Post />
+        {/* <Post /> */}
       </>
     )
   }

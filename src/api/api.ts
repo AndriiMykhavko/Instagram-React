@@ -29,3 +29,28 @@ export const authAPI: any = {
     firebase.auth().signInWithRedirect(provider);
   }
 };
+
+export const addPostAPI: any = {
+  uploadImage(email: string, image: any) {
+    return firebase.storage().ref(`images/` + email + `/` + image.name).put(image)
+  },
+  uploadPostData(email: string, postImage: string, postData: string, uploadTime: string) {
+
+    return firebase.firestore().collection("usersPosts").doc()
+    .set({
+      name: email,
+      postImage: postImage,
+      postData: postData,
+      uploadTime: uploadTime,
+      postComments: [],
+      whoLikedPost: []
+    });
+  },
+  // getPostData(email: string) {
+  //   return firebase.firestore().collection("usersPosts").doc(email).get()
+  // },
+  // async getAllPosts() {
+  //   const snapshot = await firebase.firestore().collection('usersPosts').get()
+  //   return snapshot.docs.map(doc => console.log(doc.data()));
+  // }
+}

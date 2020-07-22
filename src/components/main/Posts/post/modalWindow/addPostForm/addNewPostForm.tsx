@@ -1,6 +1,6 @@
 import React from "react";
-import { FormControl } from '../../../../common/formsControl/formsControl';
-import { maxLengthCreator, required } from "../../../../../utils/validators/validator";
+import { FormControl } from '../../../../../common/formsControl/formsControl';
+import { maxLengthCreator, required } from "../../../../../../utils/validators/validator";
 import { Field, reduxForm } from "redux-form";
 import './addNewPostForm.scss'
 import UploadPhoto from "./uploadImgPreview/imgPreview";
@@ -12,10 +12,10 @@ const AddNewPostForm = (props: any) => {
   return (
       <form className="addNewPostForm" onSubmit={props.handleSubmit} >
               <div className="margTop">
-                  <Field component={UploadPhoto} accept="image/jpeg,image/png" name="newFileBody" validate={[required]} />
+                  <Field component={UploadPhoto} accept="image/jpeg,image/png" name="postImage" validate={[required]} />
               </div>
               <div className="margTop">
-                  <Field component={FormControl} el="textarea" name="newMessageBody" validate={[required, maxLendthField500]} 
+                  <Field component={FormControl} el="textarea" name="postMessage" validate={[required, maxLendthField500]} 
                   placeholder={"Add your comment..."} />
               </div>
               <div className="modalButton">

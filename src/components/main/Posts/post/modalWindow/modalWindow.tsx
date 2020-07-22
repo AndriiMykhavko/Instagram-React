@@ -21,7 +21,12 @@ const customStyles = {
 // Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement('#root')
  
-function ModalWindow(){
+interface IProps{
+  addPostIntoDB?: any,
+  email?: any
+}
+
+const ModalWindow: React.FC<IProps> = (props: any) => {
   var subtitle;
   const [modalIsOpen,setIsOpen] = React.useState(false);
   function openModal() {
@@ -38,7 +43,12 @@ function ModalWindow(){
   }
 
   const addNewPost = (value: any) => {
-    return console.log(value)
+    // console.log(value.newFileBody.name)
+    props.addPostIntoDB(props.email, value.postImage, value.postMessage)
+    closeModal()
+    // return console.log(value.newMessageBody)
+    // value.newFileBody.name
+    // value.newMessageBody
   }
 
   return (
