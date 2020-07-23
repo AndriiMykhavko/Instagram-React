@@ -16,15 +16,27 @@ interface IProps{
 }
 
 class App extends React.Component<IProps> {
-  componentDidMount() {
-    firebase.auth().onAuthStateChanged(
-        (user) => {
-          if (user !== null) {
-            // console.log(user.uid)
-            this.props.logInUser(user.displayName);
+  // componentDidMount() {
+  //   firebase.auth().onAuthStateChanged(
+  //       (user) => {
+  //         if (user !== null) {
+  //           // console.log(user.uid)
+  //           this.props.logInUser(user.displayName);
+  //         }
+  //       }
+  //   );
+    componentDidMount() {
+      firebase.auth().onIdTokenChanged(
+          (user) => {
+            if (user !== null) {
+                        // console.log(user.uid)
+                        this.props.logInUser(user.displayName);
+            }
+            if (user && user.displayName === null) {
+              firebase.auth().updateCurrentUser(user);
+            }
           }
-        }
-    );
+      );
     // addPostAPI.getAllPosts()
     this.props.deletPosts()
     firebase.firestore().collection("usersPosts")

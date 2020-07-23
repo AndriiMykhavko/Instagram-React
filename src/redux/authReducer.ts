@@ -47,12 +47,13 @@ export const registration = ( name: string, email: string, password: string) => 
   authAPI
     .registration(email, password)
     .then((response: any) => {
-      if(response.user.email.length !== 0) {
+      if(response.user) {
         response.user.updateProfile({
           displayName: name,
         })
       }
-      console.log(response)
+      // console.log(response)
+      // debugger
     })
     .catch((error: any) => alert(error));
 };

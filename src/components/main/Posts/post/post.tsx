@@ -1,8 +1,6 @@
 import React from 'react'
 import './post.scss'
 import { Link } from 'react-router-dom'
-// import '@fortawesome/fontawesome-free/css/all.min.css';
-// import postPhoto from '../../../../assets/images/postPhoto.jpg'
 import CommentsSection from './commentsSection/commentsSection'
 import { UserPhotoSection } from './userPhotoSection/userPhotoSection';
 

@@ -81,7 +81,7 @@ export const addPostIntoDB = (name: string, postImage: any, postData: string) =>
           .then((url) => {
 
             const now = new Date().toLocaleString();
-            
+            debugger
             addPostAPI
             .uploadPostData(name, url, postData, now)
             .then(
