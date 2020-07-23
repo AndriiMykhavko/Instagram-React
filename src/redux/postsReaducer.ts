@@ -3,6 +3,7 @@ import { storage } from "../index";
 
 const SET_POST = "SET_POST";
 const SET_COMMENT = "SET_COMMENT"
+const DELETE_POSTS = "DELETE_POSTS"
 
 const initialState = {
   posts: [] 
@@ -28,6 +29,11 @@ export const postsReducer = (state = initialState, action: any) => {
         posts: [...state.posts, newPost],
       };
     }
+    case DELETE_POSTS: {
+      return{
+        posts: []
+      }
+    }
     case SET_COMMENT: {
       return {
         // let newComment = {
@@ -47,6 +53,10 @@ export const setPost = (postID: string, postData: {}) => ({
   type: SET_POST,
   postID,
   postData
+});
+
+export const deletPosts = () => ({
+  type: DELETE_POSTS,
 });
 
 export const setCommetn = (comments: any) => ({
