@@ -41,6 +41,9 @@
     display: flex;
     height: 24px;
     width: 24px;
+    .active{
+      color: #ED4956;
+    }
     &:hover{
       color: #ED4956;
     }

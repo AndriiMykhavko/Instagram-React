@@ -1,9 +1,9 @@
-import { addPostAPI } from "../api/api";
+import { managePostAPI } from "../api/api";
 import { storage } from "../index";
 
 const SET_POST = "SET_POST";
 const SET_COMMENT = "SET_COMMENT"
-const DELETE_POSTS = "DELETE_POSTS"
+const RESET_POSTS = "RESET_POSTS"
 
 const initialState = {
   posts: [] 
@@ -29,7 +29,7 @@ export const postsReducer = (state = initialState, action: any) => {
         posts: [...state.posts, newPost],
       };
     }
-    case DELETE_POSTS: {
+    case RESET_POSTS: {
       return{
         posts: []
       }
@@ -55,17 +55,28 @@ export const setPost = (postID: string, postData: {}) => ({
   postData
 });
 
-export const deletPosts = () => ({
-  type: DELETE_POSTS,
+export const resetPosts = () => ({
+  type: RESET_POSTS,
 });
+
+export const likePost = (postID: string, userID: string) => (dispatch: any) => {
+  //debugger
+  managePostAPI
+  .uploadWhoLikedPostData(postID, userID)
+}
+
+export const unlikePost = (postID: string, userID: string) => (dispatch: any) => {
+  managePostAPI
+  .uploadWhoDeletedLikedPostData(postID, userID)
+}
 
 export const setCommetn = (comments: any) => ({
   type: SET_COMMENT,
   comments
 });
 
-export const addPostIntoDB = (name: string, postImage: any, postData: string) => (dispatch: any) => {
-  addPostAPI
+export const addPostIntoDB = (name: string, postImage: any, postData: string) => {
+  managePostAPI
     .uploadImage(name, postImage)
     .on(
       "state_changed",
@@ -81,8 +92,7 @@ export const addPostIntoDB = (name: string, postImage: any, postData: string) =>
           .then((url) => {
 
             const now = new Date().toLocaleString();
-            debugger
-            addPostAPI
+            managePostAPI
             .uploadPostData(name, url, postData, now)
             .then(
               //  addPostAPI

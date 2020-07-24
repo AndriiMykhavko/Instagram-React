@@ -4,7 +4,8 @@ const SET_USER_AUTH = "SET_USER_AUTH";
 
 const initialState = {
   isAuth: false,
-  name: ''
+  name: '',
+  userID: ''
 };
 
 export const authReducer = (state = initialState, action: any) => {
@@ -12,7 +13,8 @@ export const authReducer = (state = initialState, action: any) => {
     case SET_USER_AUTH: {
       return {
         isAuth: action.isAuth,
-        name: action.displayName
+        name: action.displayName,
+        userID: action.userID
       };
     }
     default:
@@ -20,10 +22,11 @@ export const authReducer = (state = initialState, action: any) => {
   }
 };
 
-export const logInUser = (displayName: string, isAuth = true) => ({
+export const logInUser = (displayName: string, userID: string, isAuth = true) => ({
   type: SET_USER_AUTH,
   isAuth,
-  displayName
+  displayName,
+  userID
 });
 export const logoutUser = (email = '', isAuth = false) => ({
   type: SET_USER_AUTH,

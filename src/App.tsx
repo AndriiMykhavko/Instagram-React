@@ -7,12 +7,12 @@ import mainContainer from './components/main/mainContainer';
 import * as firebase from "firebase";
 import { logInUser } from './redux/authReducer'
 import { connect } from 'react-redux';
-import { setPost, deletPosts } from './redux/postsReaducer';
+import { setPost, resetPosts } from './redux/postsReaducer';
 
 interface IProps{
   logInUser: any,
   setPost?: any,
-  deletPosts: any
+  resetPosts: any
 }
 
 class App extends React.Component<IProps> {
@@ -30,7 +30,7 @@ class App extends React.Component<IProps> {
           (user) => {
             if (user !== null) {
                         // console.log(user.uid)
-                        this.props.logInUser(user.displayName);
+                        this.props.logInUser(user.displayName, user.uid);
             }
             if (user && user.displayName === null) {
               firebase.auth().updateCurrentUser(user);
@@ -38,10 +38,10 @@ class App extends React.Component<IProps> {
           }
       );
     // addPostAPI.getAllPosts()
-    this.props.deletPosts()
+    // this.props.deletPosts()
     firebase.firestore().collection("usersPosts")
     .orderBy("uploadTime", "desc").onSnapshot((snapshot) => {
-      this.props.deletPosts()
+      this.props.resetPosts()
       snapshot.forEach(
         //doc => console.log(doc.data())
         // const postData = []
@@ -76,4 +76,4 @@ const mapStateToProps = (state: any) => {
 }
 
 
-export default connect(mapStateToProps, {logInUser, setPost, deletPosts})(App);
+export default connect(mapStateToProps, {logInUser, setPost, resetPosts})(App);

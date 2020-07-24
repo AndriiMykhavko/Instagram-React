@@ -8,10 +8,11 @@ import TextareaAutosize from 'react-textarea-autosize';
 const maxLendthField500 = maxLengthCreator(500);
 
 const AddNewCommentForm = (props: any) => {
+    
   return (
       <form className="addNewCommentForm" onSubmit={props.handleSubmit} >
               <div className="margTop">
-                  <Field component={FormControl} el={TextareaAutosize} name="newMessageBody" validate={[required, maxLendthField500]} 
+                  <Field component={FormControl} el={TextareaAutosize} name="newCommentData" validate={[required, maxLendthField500]} 
                   placeholder={"Add your comment..."} />
               </div>
               <div>

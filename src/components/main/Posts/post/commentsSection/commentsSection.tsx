@@ -1,18 +1,30 @@
 import React from 'react'
 import './commentSection.scss'
-import AddNewCommentFromContainer from './addNewPostForm/addNewCommentFromContainer'
-import CommentContainer from './comment/commentContainer'
+import Comment from './comment/comment'
+import AddNewCommentForm from './addNewCommentForm/addNewCommentForm'
 
-const CommentsSection: React.FC = (props: any) => {
+interface IProps{
+  postComments: any[],
+  postID: string,
+  userID: string
+}
+
+const CommentsSection = (props: IProps): JSX.Element => {
+
+  //let postComments = props.postComments.map()
+
+  const addNewComment = (formData: any) => {
+    console.log(formData.newCommentData)
+  }
   return(
       <div className="addCommentSection">
         <div className="texAreaSection">
-          <AddNewCommentFromContainer />
+        <AddNewCommentForm onSubmit={addNewComment}/>
         </div>
-        {/* <div className="commentWrapper">
-          <CommentContainer />
-          <CommentContainer />
-        </div> */}
+        <div className="commentWrapper">
+          {/* <Comment /> */}
+          
+        </div>
       </div>
   )
 }

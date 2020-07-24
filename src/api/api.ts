@@ -30,7 +30,7 @@ export const authAPI: any = {
   }
 };
 
-export const addPostAPI: any = {
+export const managePostAPI: any = {
   uploadImage(name: string, image: any) {
     return firebase.storage().ref(`images/` + name + `/` + image.name).put(image)
   },
@@ -46,6 +46,19 @@ export const addPostAPI: any = {
       whoLikedPost: []
     });
   },
+  uploadWhoLikedPostData(postID: string, userID: string) {
+    return firebase.firestore().collection("usersPosts").doc(postID)
+    .update({
+      // whoLikedPost: [userID]
+      whoLikedPost: firebase.firestore.FieldValue.arrayUnion(userID)
+    })
+  },
+  uploadWhoDeletedLikedPostData(postID: string, userID: string) {
+    return firebase.firestore().collection("usersPosts").doc(postID)
+    .update({
+      whoLikedPost: firebase.firestore.FieldValue.arrayRemove(userID)
+    })
+  }
   // getPostData(email: string) {
   //   return firebase.firestore().collection("usersPosts").doc(email).get()
   // },

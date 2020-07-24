@@ -2,7 +2,7 @@ import React from 'react'
 import './comment.scss'
 import { UserPhotoSection } from '../../userPhotoSection/userPhotoSection'
 
-export const Comment: React.FC = (props: any) => {
+const Comment: React.FC = (props: any) => {
   return(
     <div className="comment">
         <UserPhotoSection />
@@ -20,3 +20,5 @@ export const Comment: React.FC = (props: any) => {
       </div>
   )
 }
+
+export default Comment
