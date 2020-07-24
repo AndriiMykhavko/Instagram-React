@@ -6,8 +6,8 @@ import { IPost } from './post/post'
 interface IProps{
   posts: IPost[],
   userID: string,
-  likePost: any,
-  unlikePost: any
+  likePost: (postID: string, userID: string) => void,
+  unlikePost: (postID: string, userID: string) => void
 }
 
 const Posts = (props: IProps): JSX.Element => {

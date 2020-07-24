@@ -4,6 +4,7 @@ import Modal from 'react-modal';
 import './modalWindow.scss'
 import AddNewPostForm from './addPostForm/addNewPostForm'
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { addPostIntoDB } from '../../../../../redux/posts/actions';
 
 const customStyles = {
   content : {
@@ -22,7 +23,6 @@ const customStyles = {
 Modal.setAppElement('#root')
  
 interface IProps{
-  addPostIntoDB?: any,
   name?: any
 }
 
@@ -44,7 +44,7 @@ const ModalWindow: React.FC<IProps> = (props: any) => {
 
   const addNewPost = (value: any) => {
     // console.log(value.newFileBody.name)
-    props.addPostIntoDB(props.name, value.postImage, value.postMessage)
+    addPostIntoDB(props.name, value.postImage, value.postMessage)
     closeModal()
     // return console.log(value.newMessageBody)
     // value.newFileBody.name

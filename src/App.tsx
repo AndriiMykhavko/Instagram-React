@@ -7,7 +7,7 @@ import mainContainer from './components/main/mainContainer';
 import * as firebase from "firebase";
 import { logInUser } from './redux/authReducer'
 import { connect } from 'react-redux';
-import { setPost, resetPosts } from './redux/postsReaducer';
+import { setPost, resetPosts } from './redux/posts/actions';
 
 interface IProps{
   logInUser: any,
@@ -43,10 +43,6 @@ class App extends React.Component<IProps> {
     .orderBy("uploadTime", "desc").onSnapshot((snapshot) => {
       this.props.resetPosts()
       snapshot.forEach(
-        //doc => console.log(doc.data())
-        // const postData = []
-        // doc => postData.push(doc.id, ...doc.data())
-        // const postData = []
         (doc: any) => this.props.setPost(doc.id, doc.data())
         )
     })

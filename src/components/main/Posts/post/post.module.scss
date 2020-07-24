@@ -36,9 +36,11 @@
   padding: 10px 15px;
   display: flex;
   flex-direction: column;
-  .likesButton{
+  .likesButton button{
+    border: none;
+    background-color: transparent;
+    font-size: 24px;
     cursor: pointer;
-    display: flex;
     height: 24px;
     width: 24px;
     .active{
@@ -46,6 +48,9 @@
     }
     &:hover{
       color: #ED4956;
+    }
+    &:focus{
+      outline: none;
     }
   }
   .likesCount{

@@ -1,9 +1,9 @@
 import React from 'react'
-import './post.scss'
+import styles from'./post.module.scss'
 import { Link } from 'react-router-dom'
 import CommentsSection from './commentsSection/commentsSection'
 import { UserPhotoSection } from './userPhotoSection/userPhotoSection';
-import { userInfo } from 'os';
+
 
 export interface IPost{
   likes: any[],
@@ -30,45 +30,41 @@ const Post = (props: IPost): JSX.Element => {
   }
 
   return(
-  <div className="postWrapper">
+  <div className={styles.postWrapper}>
 
-    <div className="postOwnerInfo">
+    <div className={styles.postOwnerInfo}>
       <UserPhotoSection />
       
       <div>
-    <Link to="#" className="postOwnerName">{props.owner}</Link>
+    <Link to="#" className={styles.postOwnerName}>{props.owner}</Link>
       </div>
     </div>
 
-    <div className="ownerPhoto">
+    <div className={styles.ownerPhoto}>
       <img src={props.postImg} alt="usersPhoto"/>
     </div>
 
-    <div className="postButtons">
-      <div className="likesButton">
+    <div className={styles.postButtons}>
+      <div className={styles.likesButton}>
         
-      {props.likes.length === 0 ? <i className="far fa-heart test" onClick={() => likePost(props.postID, props.userID)}></i>
+      {props.likes.length === 0 ? <button onClick={() => likePost(props.postID, props.userID)}><i className="far fa-heart"></i></button>
           : 
-          props.likes.map((item) => {
-            if(props.likes.length != 0 && item === props.userID) {
-             return <i className="fas fa-heart active" onClick={() => unlikePost(props.postID, props.userID)}></i>
-            } else {
-              return <i className="far fa-heart if" onClick={() => likePost(props.postID, props.userID)}></i>
-            }
-            }
-          )
+          props.likes.find((item) => {
+           return item === props.userID
+          }) === props.userID ? <button onClick={() => unlikePost(props.postID, props.userID)}><i className={`fas fa-heart`+" " + styles.active}></i></button> 
+          : <button onClick={() => likePost(props.postID, props.userID)}><i className="far fa-heart" ></i></button>
       }
       </div>
-      <div className="likesCount">
+      <div className={styles.likesCount}>
         {props.likes.length} likes
       </div>
-      <div className="postData">
+      <div className={styles.postData}>
         {props.uploadTime}
       </div>
     </div>
     
-    <div className="postText">
-      <Link to="#" className="postOwnerName">{props.owner}</Link>
+    <div className={styles.postText}>
+      <Link to="#" className={styles.postOwnerName}>{props.owner}</Link>
       {props.postData}
     </div>
 
