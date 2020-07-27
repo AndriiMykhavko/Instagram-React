@@ -49,7 +49,6 @@ export const managePostAPI: any = {
   uploadWhoLikedPostData(postID: string, userID: string) {
     return firebase.firestore().collection("usersPosts").doc(postID)
     .update({
-      // whoLikedPost: [userID]
       whoLikedPost: firebase.firestore.FieldValue.arrayUnion(userID)
     })
   },
@@ -57,6 +56,12 @@ export const managePostAPI: any = {
     return firebase.firestore().collection("usersPosts").doc(postID)
     .update({
       whoLikedPost: firebase.firestore.FieldValue.arrayRemove(userID)
+    })
+  },
+  uploadNewPostComment(postID: string, owner: string, comment: string) {
+    return firebase.firestore().collection("usersPosts").doc(postID)
+    .update({
+      postComments: firebase.firestore.FieldValue.arrayUnion({owner, comment})
     })
   }
   // getPostData(email: string) {

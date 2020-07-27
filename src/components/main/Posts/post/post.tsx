@@ -3,24 +3,23 @@ import styles from'./post.module.scss'
 import { Link } from 'react-router-dom'
 import CommentsSection from './commentsSection/commentsSection'
 import { UserPhotoSection } from './userPhotoSection/userPhotoSection';
+import { IComment } from './commentsSection/comment/comment'
 
 
 export interface IPost{
-  likes: any[],
+  likes: string[],
   owner: string,
-  postComments: any[],
+  postComments: IComment[],
   postID: string,
   postImg: string,
   postData: string,
   uploadTime: string,
   userID: string,
-  likePost: any,
-  unlikePost: any
+  likePost: (postID: string, userID: string) => void,
+  unlikePost: (postID: string, userID: string) => void
 }
 
 const Post = (props: IPost): JSX.Element => {
-  // console.log(props)
-  // debugger
  
   const likePost = (postID: string, userID: string) => {
     props.likePost(postID, userID)
@@ -68,7 +67,7 @@ const Post = (props: IPost): JSX.Element => {
       {props.postData}
     </div>
 
-    <CommentsSection postComments={props.postComments} postID={props.postID} userID={props.userID}/>
+    <CommentsSection postComments={props.postComments} postID={props.postID} owner={props.owner}/>
   </div>
   )
 }

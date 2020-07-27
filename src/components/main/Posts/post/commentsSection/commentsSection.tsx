@@ -1,28 +1,30 @@
 import React from 'react'
 import './commentSection.scss'
 import Comment from './comment/comment'
-import AddNewCommentForm from './addNewCommentForm/addNewCommentForm'
+import AddNewCommentFormContainer from './addNewCommentForm/addNewCommentFormContainer'
+import { IComment } from './comment/comment'
 
 interface IProps{
-  postComments: any[],
+  postComments: IComment[],
   postID: string,
-  userID: string
+  owner: string,
 }
 
 const CommentsSection = (props: IProps): JSX.Element => {
+  // console.log(props.postComments)
+  // debugger
 
-  //let postComments = props.postComments.map()
+  let postComments = props.postComments.map( (commentData: IComment) => 
+    <Comment  owner={commentData.owner}  comment={commentData.comment}/>
+  )
 
-  const addNewComment = (formData: any) => {
-    console.log(formData.newCommentData)
-  }
   return(
       <div className="addCommentSection">
         <div className="texAreaSection">
-        <AddNewCommentForm onSubmit={addNewComment}/>
+        <AddNewCommentFormContainer postID={props.postID}/>
         </div>
         <div className="commentWrapper">
-          {/* <Comment /> */}
+          {postComments}
           
         </div>
       </div>
@@ -30,20 +32,3 @@ const CommentsSection = (props: IProps): JSX.Element => {
 }
 
 export default CommentsSection
-
-// const maxLendthField50 = maxLengthCreator(50);
-
-// const AddNewMessageForm = (props) => {
-//   return (
-//       <form onSubmit={props.handleSubmit} >
-//               <div>
-//                   <Field component={FormControl} el="textarea" name="newMessageBody" validate={[required, maxLendthField50]} placeholder={"Enter your message..."} />
-//               </div>
-//               <div>
-//                   <button>Add post</button>
-//               </div>
-//       </form>
-//   )
-// }
-
-// export default reduxForm({form: "dialogAddMessageForm"})(AddNewMessageForm);

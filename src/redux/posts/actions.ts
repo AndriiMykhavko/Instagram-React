@@ -1,5 +1,5 @@
+import { managePostAPI } from './../../api/api';
 import types from './types'
-import { managePostAPI } from '../../api/api'
 import { storage } from '../../index'
 
 export const actionCreater = (type: string, payload: any ) => ({
@@ -17,7 +17,6 @@ export const resetPosts = () => ({
 });
 
 export const likePost = (postID: string, userID: string) => (dispatch: any) => {
-  //debugger
   managePostAPI
   .uploadWhoLikedPostData(postID, userID)
 }
@@ -27,10 +26,10 @@ export const unlikePost = (postID: string, userID: string) => (dispatch: any) =>
   .uploadWhoDeletedLikedPostData(postID, userID)
 }
 
-export const setCommetn = (comments: any) => ({
-  type: types.SET_COMMENT,
-  comments
-});
+export const addCommetnIntoDB = (postID: string, owner: string, comment: string) => {
+  managePostAPI
+  .uploadNewPostComment(postID, owner, comment)
+};
 
 export const addPostIntoDB = (name: string, postImage: any, postData: string) => {
   managePostAPI
