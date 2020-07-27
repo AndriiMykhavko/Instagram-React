@@ -20,7 +20,7 @@ export const postsReducer = (state = initialState, action: any) => {
       return {
         //...state,
         // posts: [...state.posts, newPost],
-        posts: [...state.posts, newPost],
+        posts: [newPost, ...state.posts ],
       };
     }
     case types.RESET_POSTS: {

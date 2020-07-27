@@ -11,8 +11,8 @@ interface IProps{
 }
 
 const Posts = (props: IProps): JSX.Element => {
-  let postsElements = props.posts.map( (post: IPost) => 
-  <Post likes={post.likes} owner={post.owner} key={post.postID}
+  let postsElements = props.posts.map( (post: IPost, index) => 
+  <Post likes={post.likes} owner={post.owner} key={index}
         postComments={post.postComments} postID={post.postID} postImg={post.postImg}
         postData={post.postData} uploadTime={post.uploadTime} userID={props.userID}
         likePost={props.likePost} unlikePost={props.unlikePost}/> 

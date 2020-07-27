@@ -10,7 +10,7 @@ const AddNewCommentForm = (props: any) => {
     
   return (
       <form className="addNewCommentForm" onSubmit={props.handleSubmit} >
-              <div className="margTop">
+              <div className="textAreaWrapper">
                   <Field component={FormControl} el={TextareaAutosize} name="newCommentData" validate={[required]} 
                   placeholder={"Add your comment..."} />
               </div>

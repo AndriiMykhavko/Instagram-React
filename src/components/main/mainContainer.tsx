@@ -6,6 +6,8 @@ import './mainContainer.scss'
 // import AddPostButton from './addPostButton/addPostButton'
 import PostsContainer from './Posts/postsConatainer'
 import ModalWindowContainer from './Posts/post/modalWindow/modalWindowContainer'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface IProps {
   logout: any,
@@ -22,11 +24,12 @@ class MainContainer extends React.Component<IProps>{
     <>
       <HeaderConatiner />
       <div className="wrapperToMain">
-        {/* <AddPostButton /> */}
+
         <ModalWindowContainer />
         <PostsContainer />
-        {/* <Main logout={this.props.logout}/> */}
-      {/* {this.props.isAuth ? <Main logout={this.props.logout}/> : <Redirect to={"/"} />} */}
+        
+        <ToastContainer autoClose={false}/>
+
       </div>
     </>
     )

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
-import './modalWindow.scss'
+import style from './modalWindow.module.scss'
 import AddNewPostForm from './addPostForm/addNewPostForm'
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { addPostIntoDB } from '../../../../../redux/posts/actions';
@@ -15,7 +15,8 @@ const customStyles = {
     marginRight           : '-50%',
     transform             : 'translate(-50%, -50%)',
     border                : '1px solid #DBDBDB',
-    width                 : '500px'
+    // width                 : '500px'
+    //width                 : '80%'
   }
 };
  
@@ -53,7 +54,7 @@ const ModalWindow: React.FC<IProps> = (props: any) => {
 
   return (
     <div>
-      <button onClick={openModal} className="addPostButton">Add Post</button>
+      <button onClick={openModal} className={style.addPostButton}>Add Post</button>
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
@@ -63,9 +64,9 @@ const ModalWindow: React.FC<IProps> = (props: any) => {
       >
 
         {/* <h2 ref={_subtitle => (subtitle = _subtitle)}>Hello</h2> */}
-        <div>
-          <div className="closePostButtonWrapper">
-            <button onClick={closeModal} className="closePostButton"><i className="fas fa-times"></i></button>
+        <div className={style.modalWindow}>
+          <div className={style.closePostButtonWrapper}>
+            <button onClick={closeModal} className={style.closePostButton}><i className="fas fa-times"></i></button>
           </div>
           <AddNewPostForm onSubmit={addNewPost}/>
         </div>

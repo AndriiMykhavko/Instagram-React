@@ -1,16 +1,21 @@
-.margTop{
-  margin-top: 3px;
-}
-
 .addNewCommentForm{
-  textarea{
-    border: none !important; 
-  }
-  span{
-    display: none;
-  }
+  .textAreaWrapper{
+    margin-top: 3px;
+    textarea{
+      border: none !important; 
+    }
+    span{
+      display: none;
+    }
+  }  
   .dissabledButton{
     color: #9cd6fc;
     cursor: auto;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .textAreaWrapper{
+    width: 80%;
   }
 }

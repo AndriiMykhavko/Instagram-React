@@ -14,8 +14,8 @@ const CommentsSection = (props: IProps): JSX.Element => {
   // console.log(props.postComments)
   // debugger
 
-  let postComments = props.postComments.map( (commentData: IComment) => 
-    <Comment  owner={commentData.owner}  comment={commentData.comment}/>
+  let postComments = props.postComments.map( (commentData: IComment, index) => 
+    <Comment  key={index} owner={commentData.owner}  comment={commentData.comment}/>
   )
 
   return(

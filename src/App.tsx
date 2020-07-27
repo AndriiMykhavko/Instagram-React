@@ -8,23 +8,17 @@ import * as firebase from "firebase";
 import { logInUser } from './redux/authReducer'
 import { connect } from 'react-redux';
 import { setPost, resetPosts } from './redux/posts/actions';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface IProps{
   logInUser: any,
   setPost?: any,
-  resetPosts: any
+  resetPosts: any,
+  posts: any[]
 }
 
 class App extends React.Component<IProps> {
-  // componentDidMount() {
-  //   firebase.auth().onAuthStateChanged(
-  //       (user) => {
-  //         if (user !== null) {
-  //           // console.log(user.uid)
-  //           this.props.logInUser(user.displayName);
-  //         }
-  //       }
-  //   );
     componentDidMount() {
       firebase.auth().onIdTokenChanged(
           (user) => {
@@ -38,19 +32,40 @@ class App extends React.Component<IProps> {
           }
       );
     // addPostAPI.getAllPosts()
-    // this.props.deletPosts()
-    firebase.firestore().collection("usersPosts")
-    .orderBy("uploadTime", "desc").onSnapshot((snapshot) => {
-      this.props.resetPosts()
-      snapshot.forEach(
-        (doc: any) => this.props.setPost(doc.id, doc.data())
-        )
-    })
-  //   firebase.firestore().collection("usersPosts")
-  //   .onSnapshot(function(doc: any) {
-  //     var source = doc.metadata.hasPendingWrites ? "Local" : "Server";
-  //     console.log(source, " data: ", doc.data());
-  // });
+
+      firebase.firestore().collection("usersPosts")
+      .orderBy("uploadTime", "asc").onSnapshot((snapshot) => {
+        this.props.resetPosts()
+        //console.log("Listener for all" + " " + this.props.posts.length)
+        //debugger
+        if(this.props.posts.length < 1){
+          snapshot.forEach(
+            (doc: any) => this.props.setPost(doc.id, doc.data())
+            )
+        }
+        
+      })
+
+   
+
+    //   firebase.firestore().collection("usersPosts")
+    //   .orderBy("uploadTime", "asc").onSnapshot((snapshot) => {
+    //     snapshot.docChanges().forEach((change) => {
+    //         if (change.type === "added") {
+    //              //console.log("Added", change.doc.data());
+    //              toast.dark("Added new post!" )
+    //              this.props.setPost(change.doc.id, change.doc.data())
+    //         }
+    //         if (change.type === "modified") {
+    //             console.log("Modified: ", change.doc.data());
+    //         }
+    //         if (change.type === "removed") {
+    //             console.log("Removed: ", change.doc.data());
+    //         }
+    //     });
+    // });
+    
+
   }
 
   render() {
@@ -68,6 +83,7 @@ class App extends React.Component<IProps> {
 const mapStateToProps = (state: any) => {
   return{
     isAuth: state.auth.isAuth,
+    posts: state.postsPage.posts
   }
 }
 
