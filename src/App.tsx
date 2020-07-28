@@ -7,15 +7,17 @@ import mainContainer from './components/main/mainContainer';
 import * as firebase from "firebase";
 import { logInUser } from './redux/authReducer'
 import { connect } from 'react-redux';
-import { setPost, resetPosts } from './redux/posts/actions';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { setPost, resetInitialLoad, setNewPost, turnOnNewPostNotification } from './redux/posts/actions';
 
 interface IProps{
   logInUser: any,
   setPost?: any,
-  resetPosts: any,
-  posts: any[]
+  //resetPosts: any,
+  //posts: any[],
+  initialeLoad: boolean,
+  resetInitialLoad: any,
+  setNewPost: any,
+  turnOnNewPostNotification: any
 }
 
 class App extends React.Component<IProps> {
@@ -33,37 +35,44 @@ class App extends React.Component<IProps> {
       );
     // addPostAPI.getAllPosts()
 
-      firebase.firestore().collection("usersPosts")
-      .orderBy("uploadTime", "asc").onSnapshot((snapshot) => {
-        this.props.resetPosts()
-        //console.log("Listener for all" + " " + this.props.posts.length)
-        //debugger
-        if(this.props.posts.length < 1){
-          snapshot.forEach(
-            (doc: any) => this.props.setPost(doc.id, doc.data())
-            )
-        }
-        
-      })
+      // firebase.firestore().collection("usersPosts")
+      // .orderBy("uploadTime", "asc").onSnapshot((snapshot) => {
+      //   this.props.resetPosts()
+      //   //console.log("Listener for all" + " " + this.props.posts.length)
+      //   //debugger
+      //     snapshot.forEach(
+      //       (doc: any) => this.props.setPost(doc.id, doc.data())
+      //       )
+      // })
 
    
 
-    //   firebase.firestore().collection("usersPosts")
-    //   .orderBy("uploadTime", "asc").onSnapshot((snapshot) => {
-    //     snapshot.docChanges().forEach((change) => {
-    //         if (change.type === "added") {
-    //              //console.log("Added", change.doc.data());
-    //              toast.dark("Added new post!" )
-    //              this.props.setPost(change.doc.id, change.doc.data())
-    //         }
-    //         if (change.type === "modified") {
-    //             console.log("Modified: ", change.doc.data());
-    //         }
-    //         if (change.type === "removed") {
-    //             console.log("Removed: ", change.doc.data());
-    //         }
-    //     });
-    // });
+      firebase.firestore().collection("usersPosts")
+      .orderBy("uploadTime", "asc").onSnapshot((snapshot) => {
+        if(this.props.initialeLoad){
+          snapshot.docs.map((doc) => {
+            //console.log(doc.data())
+            this.props.setPost(doc.id, doc.data())
+          })
+         this.props.resetInitialLoad()
+          //console.log(this.props.initialeLoad)
+        } else {
+          snapshot.docChanges().forEach((change) => {
+            if (change.type === "added") {
+                 console.log("Added", change.doc.data());
+                 this.props.setNewPost(change.doc.id, change.doc.data())
+                 this.props.turnOnNewPostNotification()
+
+            }
+            if (change.type === "modified") {
+                console.log("Modified: ", change.doc.data());
+            }
+            if (change.type === "removed") {
+                console.log("Removed: ", change.doc.data());
+            }
+        });
+        }
+    });
     
 
   }
@@ -83,9 +92,10 @@ class App extends React.Component<IProps> {
 const mapStateToProps = (state: any) => {
   return{
     isAuth: state.auth.isAuth,
-    posts: state.postsPage.posts
+    // posts: state.postsPage,
+    initialeLoad: state.postsPage.initialeLoad
   }
 }
 
 
-export default connect(mapStateToProps, {logInUser, setPost, resetPosts})(App);
+export default connect(mapStateToProps, {logInUser, setPost, resetInitialLoad, setNewPost, turnOnNewPostNotification})(App);

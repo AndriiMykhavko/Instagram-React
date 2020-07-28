@@ -2,18 +2,32 @@ import { managePostAPI } from './../../api/api';
 import types from './types'
 import { storage } from '../../index'
 
-export const actionCreater = (type: string, payload: any ) => ({
+export const actionCreator = (type: string, payload: any ) => ({
   type,
   payload 
 })
 
 
 export const setPost = (postID: string, postData: any) => (dispatch: any) => {
-  dispatch(actionCreater(types.SET_POST, {postID, postData}))
+  dispatch(actionCreator(types.SET_POST, {postID, postData}))
 }
 
-export const resetPosts = () => ({
-  type: types.RESET_POSTS,
+export const turnOnNewPostNotification = (addedNewPost = true) => (dispatch: any) => {
+  dispatch(actionCreator(types.TURN_ON_NEW_POST, {addedNewPost}))
+}
+export const turnOffNewPostNotification = (addedNewPost = false) => (dispatch: any) => {
+  dispatch(actionCreator(types.TURN_OFF_NEW_POST, {addedNewPost}))
+}
+
+export const setNewPost = (postID: string, postData: any) => (dispatch: any) => {
+  dispatch(actionCreator(types.SET_NEW_POST, {postID, postData}))
+}
+
+export const resetInitialLoad = (stateOfLoad = false) => (dispatch: any) => {
+  dispatch(actionCreator(types.RESET_INITIALE_LOAD, {stateOfLoad}))
+}
+export const resetNewPosts = () => ({
+  type: types.RESET_NEW_POSTS,
 });
 
 export const likePost = (postID: string, userID: string) => (dispatch: any) => {

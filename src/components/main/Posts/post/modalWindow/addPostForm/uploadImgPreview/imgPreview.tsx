@@ -31,7 +31,7 @@ class UploadPhoto extends React.Component<IProps, IState>  {
         <input type="file" name="photo" id="photoFile" onChange={this.handleChange} className="inputfile" />
         <label htmlFor="photoFile"><i className="far fa-image"></i> Choose a photo... </label>
         <div className="previewImg">
-        <img src={this.state.file}/>
+        <img src={this.state.file} />
         </div>
       </>
     );
