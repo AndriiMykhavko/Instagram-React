@@ -25,7 +25,6 @@ class App extends React.Component<IProps> {
       firebase.auth().onIdTokenChanged(
           (user) => {
             if (user !== null) {
-                        // console.log(user.uid)
                         this.props.logInUser(user.displayName, user.uid);
             }
             if (user && user.displayName === null) {

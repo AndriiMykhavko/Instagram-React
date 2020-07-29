@@ -1,5 +1,5 @@
 import React from 'react'
-import './header.scss'
+import styles from './header.module.scss'
 
 interface IProps {
     logout: any
@@ -7,7 +7,7 @@ interface IProps {
 
 const Header: React.FC<IProps> = (props: any) => {
     return(
-        <div className="headerWrapper">
+        <div className={styles.headerWrapper}>
             <div>
                 <h1>Instagram</h1>
             </div>

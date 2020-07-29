@@ -1,5 +1,5 @@
 import React from 'react'
-import './comment.scss'
+import styles from './comment.module.scss'
 import { UserPhotoSection } from '../../userPhotoSection/userPhotoSection'
 
 export interface IComment{
@@ -9,9 +9,9 @@ export interface IComment{
 
 const Comment = (props: IComment): JSX.Element => {
   return(
-    <div className="comment">
+    <div className={styles.comment}>
         <UserPhotoSection />
-        <div className="commentText">
+        <div className={styles.commentText}>
           <span> {props.owner} </span>
           {props.comment}
         </div>

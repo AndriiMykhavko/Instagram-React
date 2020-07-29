@@ -5,7 +5,7 @@ import { required, maxLengthCreator, minLengthCreator } from '../../../utils/val
 import { FormControl } from '../../common/formsControl/formsControl';
 import { connect } from 'react-redux';
 import { login, googleAuth } from '../../../redux/authReducer'
-import './signInStyles.scss'
+import styles from './signInStyles.module.scss'
 import phone from '../../../assets/images/phone.png'
 
 
@@ -17,14 +17,14 @@ const SignInForm: React.FC <IProps> = (props) => {
     return (
       <>
         <form onSubmit={props.handleSubmit} >
-          <div className="margBottom">
+          <div className={styles.margBottom}>
             <Field placeholder={"Email"} el="input" type="text" validate={[required]} name={"email"} component={FormControl} />
           </div>
-          <div className="margBottom">
+          <div className={styles.margBottom}>
             <Field placeholder={"Password"} el="input" type="password" validate={[required]} name={"password"} component={FormControl} />
           </div>
           <div>
-            <button className="signInButton">Sign In</button>
+            <button className={styles.signInButton}>Sign In</button>
           </div>
         </form>
       </>
@@ -44,18 +44,18 @@ const Login = (props: any) => {
     }
 
     return (
-      <div className="wrapperLogin">
-        <div className="phonePhoto">
+      <div className={styles.wrapperLogin}>
+        <div className={styles.phonePhoto}>
           <img src={phone} alt="phone"/>
         </div>
-        <div className="width100">
-          <div className="wrapperForm">
+        <div className={styles.width100}>
+          <div className={styles.wrapperForm}>
             <h1>Instagram</h1>
             <LoginReduxForm onSubmit={onSubmit} />
-            <div className="or">OR</div>
-            <button className="googleButton signInButton" onClick={props.googleAuth}>Sing In with Google</button>
+            <div className={styles.or}>OR</div>
+            <button className={`${styles.googleButton} ${styles.signInButton}`} onClick={props.googleAuth}>Sing In with Google</button>
           </div>
-          <div className="wrapperRedirectButton">
+          <div className={styles.wrapperRedirectButton}>
               If you dont have account,<Link to="/signUp" >SignUp</Link>
           </div>
         </div>

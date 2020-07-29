@@ -23,7 +23,6 @@ export const postsReducer = (state = initialState, action: any) => {
       }
       return {
         ...state,
-        // posts: [...state.posts, newPost],
         posts: [newPost, ...state.posts ],
       };
     }
@@ -94,8 +93,6 @@ export const postsReducer = (state = initialState, action: any) => {
         return item.postID === payload.postID
       })
       const posts = [...state.posts]
-      // console.log(payload.owner)
-      // debugger
       const comment = {
         owner: payload.owner, 
         comment: payload.comment

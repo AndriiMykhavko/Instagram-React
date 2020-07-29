@@ -5,6 +5,7 @@ import { required, maxLengthCreator, minLengthCreator } from '../../../utils/val
 import { FormControl } from '../../common/formsControl/formsControl';
 import { connect } from 'react-redux';
 import { registration } from '../../../redux/authReducer'
+import styles from '../signIn/signInStyles.module.scss'
 
 
 const maxLendthField10 = maxLengthCreator(10);
@@ -18,17 +19,17 @@ const SignUpForm: React.FC <IProps> = (props) => {
     return (
         <>
           <form onSubmit={props.handleSubmit} >
-           <div className="margBottom">
+           <div className={styles.margBottom}>
               <Field placeholder={"Name"} el="input" type="text" validate={[required, maxLendthField10]} name={"name"} component={FormControl} />
             </div>
-            <div className="margBottom">
+            <div className={styles.margBottom}>
               <Field placeholder={"Email"} el="input" type="text" validate={[required]} name={"email"} component={FormControl} />
             </div>
-            <div className="margBottom">
+            <div className={styles.margBottom}>
               <Field placeholder={"Password"} el="input" type="password" validate={[required, minLengthField7, maxLendthField10]} name={"password"} component={FormControl} />
             </div>
             <div>
-              <button className="signInButton">Sign Up</button>
+              <button className={styles.signInButton}>Sign Up</button>
             </div>
           </form>
         </>
@@ -39,9 +40,7 @@ const LoginReduxForm = reduxForm({form: 'login'})(SignUpForm)
 
 const Login = (props: any) => {
     const onSubmit = (formData: any) => {
-        //props.registration(formData.email, formData.password);
         props.registration(formData.name, formData.email, formData.password);
-        //console.log(formData);
     }
 
     if(props.isAuth) {
@@ -49,15 +48,15 @@ const Login = (props: any) => {
     }
 
     return (
-      <div className="wrapperLogin">
-        <div className="width100">
-          <div className="wrapperForm">
+      <div className={styles.wrapperLogin}>
+        <div className={styles.width100}>
+          <div className={styles.wrapperForm}>
             <h1>Instagram</h1>
             <LoginReduxForm onSubmit={onSubmit} />
-            <div>OR</div>
-            <button className="googleButton signInButton">Sing In with Google</button>
+            <div className={styles.or}>OR</div>
+            <button className={`${styles.googleButton} ${styles.signInButton}`}>Sing In with Google</button>
           </div>
-          <div className="wrapperRedirectButton">
+          <div className={styles.wrapperRedirectButton}>
               If you have account,<Link to="/" >SignIn</Link>
           </div>
         </div>

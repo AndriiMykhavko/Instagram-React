@@ -1,21 +1,21 @@
 import React from "react";
 import { FormControl } from '../../../../../common/formsControl/formsControl';
-import { maxLengthCreator, required } from "../../../../../../utils/validators/validator";
+import { required } from "../../../../../../utils/validators/validator";
 import { Field, reduxForm } from "redux-form";
-import './addNewCommentForm.scss'
+import styles from './addNewCommentForm.module.scss'
 import TextareaAutosize from 'react-textarea-autosize';
 
 
 const AddNewCommentForm = (props: any) => {
     
   return (
-      <form className="addNewCommentForm" onSubmit={props.handleSubmit} >
-              <div className="textAreaWrapper">
+      <form className={styles.addNewCommentForm} onSubmit={props.handleSubmit} >
+              <div className={styles.textAreaWrapper}>
                   <Field component={FormControl} el={TextareaAutosize} name="newCommentData" validate={[required]} 
                   placeholder={"Add your comment..."} />
               </div>
               <div>
-              {props.invalid ? <button className="dissabledButton" disabled>Publish</button> : <button>Publish</button>}
+              {props.invalid ? <button className={styles.dissabledButton} disabled>Publish</button> : <button>Publish</button>}
                   {/* <button>Publish</button> */}
               </div>
       </form>
