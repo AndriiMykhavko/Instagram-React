@@ -1,7 +1,8 @@
 import types from './types'
+import { IPost } from '../../components/main/Posts/post/post'
 
 const initialState = {
-  posts: [],
+  posts: [] as IPost[],
   initialeLoad: true,
   addedNewPost: false,
   newPosts: [] 
@@ -55,6 +56,56 @@ export const postsReducer = (state = initialState, action: any) => {
       return{
         ...state,
         newPosts: []
+      }
+    }
+    case types.ADD_NEW_LIKE_TO_COMMENT: {
+      const payload = action.payload
+      const index = state.posts.findIndex((item: any) => {
+        return item.postID === payload.postID
+      })
+      const posts = [...state.posts]
+      if(index > -1){
+        posts[index].likes.push(payload.userID)
+      }
+      return {
+        ...state,
+        posts: posts
+      }
+    }
+    case types.REMOVE_LIKE_FROM_COMMENT: {
+      const payload = action.payload
+      const index = state.posts.findIndex((item: any) => {
+        return item.postID === payload.postID
+      })
+      const posts = [...state.posts]
+      const indexOfLike = posts[index].likes.indexOf(payload.userID);
+      if (indexOfLike > -1) {
+        posts[index].likes.splice(indexOfLike, 1);
+      }
+      return {
+        ...state,
+        posts: posts
+      }
+
+    }
+    case types.ADD_NEW_COMMENT_TO_POST: {
+      const payload = action.payload
+      const index = state.posts.findIndex((item: any) => {
+        return item.postID === payload.postID
+      })
+      const posts = [...state.posts]
+      // console.log(payload.owner)
+      // debugger
+      const comment = {
+        owner: payload.owner, 
+        comment: payload.comment
+      } 
+      if(index > -1){
+        posts[index].postComments.push(comment)
+      }
+      return {
+        ...state,
+        posts: posts
       }
     }
     default:

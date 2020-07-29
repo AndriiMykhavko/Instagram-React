@@ -16,8 +16,7 @@ interface IDispatchRedux{
 
 class AddNewCommentFormContainer extends React.Component<IProps & IDispatchRedux> {
   addNewComment = (formData: any) => {
-    addCommetnIntoDB(this.props.postID, this.props.owner, formData.newCommentData)
-    //console.log(formData.newCommentData)
+    this.props.addNewComment(this.props.postID, this.props.owner, formData.newCommentData)
   }
 
   render() {
@@ -36,7 +35,7 @@ const mapStateToProps = (state: any) => {
 const mapDispatchToProps = (dispatch: any) => {
   return{
     addNewComment: (postID: string, owner: string, newCommentText: string) => {
-      //dispatch(addCommetnIntoDB(postID, owner, newCommentText));
+      dispatch(addCommetnIntoDB(postID, owner, newCommentText));
       dispatch(reset('addPostCommentForm'));
   }
   }

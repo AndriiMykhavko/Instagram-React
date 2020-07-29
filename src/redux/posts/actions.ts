@@ -33,16 +33,19 @@ export const resetNewPosts = () => ({
 export const likePost = (postID: string, userID: string) => (dispatch: any) => {
   managePostAPI
   .uploadWhoLikedPostData(postID, userID)
+  .then(dispatch(actionCreator(types.ADD_NEW_LIKE_TO_COMMENT, {postID, userID})))
 }
 
 export const unlikePost = (postID: string, userID: string) => (dispatch: any) => {
   managePostAPI
   .uploadWhoDeletedLikedPostData(postID, userID)
+  .then(dispatch(actionCreator(types.REMOVE_LIKE_FROM_COMMENT, {postID, userID})))
 }
 
-export const addCommetnIntoDB = (postID: string, owner: string, comment: string) => {
+export const addCommetnIntoDB = (postID: string, owner: string, comment: string) => (dispatch: any) => {
   managePostAPI
   .uploadNewPostComment(postID, owner, comment)
+  .then(dispatch(actionCreator(types.ADD_NEW_COMMENT_TO_POST, {postID, owner, comment})))
 };
 
 export const addPostIntoDB = (name: string, postImage: any, postData: string) => {

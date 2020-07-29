@@ -29,9 +29,6 @@ class MainContainer extends React.Component<IProps>{
     this.props.turnOffNewPostNotification()
      //console.log(this.props.newPosts)
   }
-  componentDidMount() {
-    console.log(this.props.newPosts)
-  }
 
   render() {
     if (!this.props.isAuth) {
