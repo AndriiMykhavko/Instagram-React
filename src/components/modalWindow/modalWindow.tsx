@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import style from './modalWindow.module.scss'
 import AddNewPostForm from './addPostForm/addNewPostForm'
-import '@fortawesome/fontawesome-free/css/all.min.css';
-import { addPostIntoDB } from '../../../../../redux/posts/actions';
+//import '../../../../userPhotoSection/node_modules/@fortawesome/fontawesome-free/css/all.min.css';
+import { addPostIntoDB } from '../../redux/posts/actions';
 
 const customStyles = {
   content : {
@@ -24,10 +24,12 @@ const customStyles = {
 Modal.setAppElement('#root')
  
 interface IProps{
-  name?: any
+  name: string,
+  userPhoto: string,
+  userID: string
 }
 
-const ModalWindow: React.FC<IProps> = (props: any) => {
+const ModalWindow = (props: any): JSX.Element => {
   var subtitle;
   const [modalIsOpen,setIsOpen] = React.useState(false);
   function openModal() {
@@ -45,7 +47,7 @@ const ModalWindow: React.FC<IProps> = (props: any) => {
 
   const addNewPost = (value: any) => {
     // console.log(value.newFileBody.name)
-    addPostIntoDB(props.name, value.postImage, value.postMessage)
+    addPostIntoDB(props.name, value.postImage, value.postMessage, props.userID, props.userPhoto)
     closeModal()
     // return console.log(value.newMessageBody)
     // value.newFileBody.name

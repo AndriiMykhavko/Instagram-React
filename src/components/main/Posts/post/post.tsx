@@ -2,7 +2,7 @@ import React from 'react'
 import styles from'./post.module.scss'
 import { Link } from 'react-router-dom'
 import CommentsSection from './commentsSection/commentsSection'
-import { UserPhotoSection } from './userPhotoSection/userPhotoSection';
+import { UserPhotoSection } from '../../../userPhotoSection/userPhotoSection';
 import { IComment } from './commentsSection/comment/comment'
 
 
@@ -15,6 +15,7 @@ export interface IPost{
   postData: string,
   uploadTime: string,
   userID: string,
+  ownerImage: string
   likePost: (postID: string, userID: string) => void,
   unlikePost: (postID: string, userID: string) => void
 }
@@ -32,9 +33,11 @@ const Post = (props: IPost): JSX.Element => {
   <div className={styles.postWrapper}>
 
     <div className={styles.postOwnerInfo}>
-      <UserPhotoSection />
+      <Link to="#">
+        <UserPhotoSection userPhoto={props.ownerImage}/>
+      </Link>
       
-      <div>
+      <div className={styles.ownerName}>
     <Link to="#" className={styles.postOwnerName}>{props.owner}</Link>
       </div>
     </div>
@@ -67,7 +70,7 @@ const Post = (props: IPost): JSX.Element => {
       {props.postData}
     </div>
 
-    <CommentsSection postComments={props.postComments} postID={props.postID} owner={props.owner}/>
+    <CommentsSection postComments={props.postComments} postID={props.postID} owner={props.owner} />
   </div>
   )
 }

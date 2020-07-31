@@ -1,0 +1,16 @@
+.addPhotoButton{
+  padding: 7px 15px;
+  background-color: #262626;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Sora', sans-serif;
+  transition: all 0.5s;
+  &:hover{
+    background-color: #8c8c8c;
+  }
+  &:focus{
+    outline: none;
+  }
+}

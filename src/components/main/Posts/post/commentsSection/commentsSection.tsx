@@ -11,9 +11,8 @@ interface IProps{
 }
 
 const CommentsSection = (props: IProps): JSX.Element => {
-
-  let postComments = props.postComments.map( (commentData: IComment, index) => 
-    <Comment  key={index} owner={commentData.owner}  comment={commentData.comment}/>
+  let postComments = props.postComments.slice(0).reverse().map( (commentData: IComment, index) => 
+    <Comment  key={index} owner={commentData.owner} ownerImage={commentData.ownerImage} comment={commentData.comment}/>
   )
 
   return(

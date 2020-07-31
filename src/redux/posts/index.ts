@@ -19,7 +19,9 @@ export const postsReducer = (state = initialState, action: any) => {
         postData: payload.postData.postData,
         likes: payload.postData.whoLikedPost,
         postComments: payload.postData.postComments,
-        uploadTime: payload.postData.uploadTime
+        uploadTime: payload.postData.uploadTime,
+        ownerID: payload.postData.userID,
+        ownerImage: payload.postData.userPhoto
       }
       return {
         ...state,
@@ -57,7 +59,7 @@ export const postsReducer = (state = initialState, action: any) => {
         newPosts: []
       }
     }
-    case types.ADD_NEW_LIKE_TO_COMMENT: {
+    case types.ADD_NEW_LIKE_TO_POST: {
       const payload = action.payload
       const index = state.posts.findIndex((item: any) => {
         return item.postID === payload.postID
@@ -71,7 +73,7 @@ export const postsReducer = (state = initialState, action: any) => {
         posts: posts
       }
     }
-    case types.REMOVE_LIKE_FROM_COMMENT: {
+    case types.REMOVE_LIKE_FROM_POST: {
       const payload = action.payload
       const index = state.posts.findIndex((item: any) => {
         return item.postID === payload.postID
@@ -85,7 +87,6 @@ export const postsReducer = (state = initialState, action: any) => {
         ...state,
         posts: posts
       }
-
     }
     case types.ADD_NEW_COMMENT_TO_POST: {
       const payload = action.payload
@@ -94,7 +95,8 @@ export const postsReducer = (state = initialState, action: any) => {
       })
       const posts = [...state.posts]
       const comment = {
-        owner: payload.owner, 
+        owner: payload.owner,
+        ownerImage: payload.ownerImage, 
         comment: payload.comment
       } 
       if(index > -1){

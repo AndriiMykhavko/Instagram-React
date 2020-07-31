@@ -1,29 +1,87 @@
 .headerWrapper{
-    background-color: #fff;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #DBDBDB;
+  border-top: 1px solid #DBDBDB;;
+  h1{
+    margin: 0;
+    font-family: 'Baloo Da 2', cursive;
+  }
+  button{
+    padding: 7px 15px;
+    background-color: #262626;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Sora', sans-serif;
+    transition: all 0.5s;
+    margin-left: 25px;
+    &:hover{
+        background-color: #8c8c8c;
+    }
+    &:focus{
+        outline: none;
+    }
+  }
+  .headerButtons{
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #DBDBDB;
-    border-top: 1px solid #DBDBDB;;
+    i{
+        font-size: 18px;
+    }
+    .mainPage{
+      margin-right: 30px;
+      i{
+        font-size: 25px;
+        color: #808080;
+      }
+    }
+    .mainPage.active{
+      i{
+        color: #262626;
+      }
+    }
+    .userPhoto{
+      box-shadow: 0 0 0pt 2pt #808080;
+      border-radius: 15px;
+      align-items: center;
+      display: flex;
+      height: 31px;
+      width: 31px;
+      justify-content: center;
+    }
+      .userPhoto.active{
+        box-shadow: 0 0 0pt 2pt #262626;
+      }
+  }
+}
+.headerUserIcon,
+.headerUserImage{
+  height: 25px !important;
+  width: 25px !important;
+}
+
+.headerUserIconOutline{
+  padding: 2px !important;
+  box-shadow: none !important;
+}
+
+@media screen and (max-width: 400px) {
+  .headerWrapper{
     h1{
-        margin: 0;
-        font-family: 'Baloo Da 2', cursive;
+      font-size: 25px;
     }
     button{
-        padding: 7px 15px;
-        background-color: #262626;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-family: 'Sora', sans-serif;
-        transition: all 0.5s;
-        &:hover{
-            background-color: #8c8c8c;
-        }
-        &:focus{
-            outline: none;
-        }
+      padding: 5px 10px;
+      margin-left: 20px;
     }
+    .headerButtons{
+      .mainPage{
+        margin-right: 20px;
+      }
+    }
+  }
 }

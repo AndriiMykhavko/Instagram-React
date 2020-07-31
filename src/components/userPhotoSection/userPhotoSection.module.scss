@@ -11,13 +11,26 @@
     color: #fff;
   }
 }
-
+.ownerImage{
+  height: 42px;
+  width: 42px;
+  img{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+  }
+}
 .ownerIconOutline{
   box-shadow: 0 0 0pt 2pt darkgrey;
   border-radius: 25px;
   padding: 5px;
 }
+// a.active{
+//   .ownerIconOutline{
+//     box-shadow: 0 0 0pt 2pt #262626;
+//   }
+// }
 .wrapperIcon{
   display: flex;
-  margin-right: 15px;
+  // margin-right: 15px;
 }

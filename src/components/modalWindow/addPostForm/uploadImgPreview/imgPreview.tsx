@@ -1,6 +1,6 @@
 import React from 'react'
-import './imgPreview.scss'
-import '@fortawesome/fontawesome-free/css/all.min.css';
+import styles from './imgPreview.module.scss'
+//import '../../../userPhotoSection/node_modules/@fortawesome/fontawesome-free/css/all.min.css';
 
 interface IProps{
   input: any
@@ -28,9 +28,9 @@ class UploadPhoto extends React.Component<IProps, IState>  {
   render() {
     return (
       <>
-        <input type="file" name="photo" id="photoFile" onChange={this.handleChange} className="inputfile" />
+        <input type="file" name="photo" id="photoFile" onChange={this.handleChange} className={styles.inputfile} />
         <label htmlFor="photoFile"><i className="far fa-image"></i> Choose a photo... </label>
-        <div className="previewImg">
+        <div className={styles.previewImg}>
         <img src={this.state.file} />
         </div>
       </>

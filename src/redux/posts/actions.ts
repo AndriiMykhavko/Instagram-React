@@ -26,6 +26,7 @@ export const setNewPost = (postID: string, postData: any) => (dispatch: any) => 
 export const resetInitialLoad = (stateOfLoad = false) => (dispatch: any) => {
   dispatch(actionCreator(types.RESET_INITIALE_LOAD, {stateOfLoad}))
 }
+
 export const resetNewPosts = () => ({
   type: types.RESET_NEW_POSTS,
 });
@@ -33,22 +34,22 @@ export const resetNewPosts = () => ({
 export const likePost = (postID: string, userID: string) => (dispatch: any) => {
   managePostAPI
   .uploadWhoLikedPostData(postID, userID)
-  .then(dispatch(actionCreator(types.ADD_NEW_LIKE_TO_COMMENT, {postID, userID})))
+  .then(dispatch(actionCreator(types.ADD_NEW_LIKE_TO_POST, {postID, userID})))
 }
 
 export const unlikePost = (postID: string, userID: string) => (dispatch: any) => {
   managePostAPI
   .uploadWhoDeletedLikedPostData(postID, userID)
-  .then(dispatch(actionCreator(types.REMOVE_LIKE_FROM_COMMENT, {postID, userID})))
+  .then(dispatch(actionCreator(types.REMOVE_LIKE_FROM_POST, {postID, userID})))
 }
 
-export const addCommetnIntoDB = (postID: string, owner: string, comment: string) => (dispatch: any) => {
+export const addCommetnIntoDB = (postID: string, owner: string, ownerImage: string, comment: string) => (dispatch: any) => {
   managePostAPI
-  .uploadNewPostComment(postID, owner, comment)
-  .then(dispatch(actionCreator(types.ADD_NEW_COMMENT_TO_POST, {postID, owner, comment})))
+  .uploadNewPostComment(postID, owner, ownerImage, comment)
+  .then(dispatch(actionCreator(types.ADD_NEW_COMMENT_TO_POST, {postID, owner, comment, ownerImage})))
 };
 
-export const addPostIntoDB = (name: string, postImage: any, postData: string) => {
+export const addPostIntoDB = (name: string, postImage: any, postData: string, userId: string, userPhoto: string) => {
   managePostAPI
     .uploadImage(name, postImage)
     .on(
@@ -66,7 +67,7 @@ export const addPostIntoDB = (name: string, postImage: any, postData: string) =>
 
             const now = new Date().toLocaleString();
             managePostAPI
-            .uploadPostData(name, url, postData, now)
+            .uploadPostData( name, url, postData, now, userId, userPhoto )
             .then(
              
             )

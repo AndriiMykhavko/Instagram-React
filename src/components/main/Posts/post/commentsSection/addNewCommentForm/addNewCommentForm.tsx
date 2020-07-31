@@ -7,7 +7,6 @@ import TextareaAutosize from 'react-textarea-autosize';
 
 
 const AddNewCommentForm = (props: any) => {
-    
   return (
       <form className={styles.addNewCommentForm} onSubmit={props.handleSubmit} >
               <div className={styles.textAreaWrapper}>

@@ -1,4 +1,3 @@
-// import axios from "axios";
 import * as firebase from "firebase";
 
 
@@ -13,16 +12,12 @@ export const authAPI: any = {
     return firebase.auth().signOut();
   },
   googleAuth(){
-        // Using a redirect.
     firebase.auth().getRedirectResult().then(function(result: any) {
       if (result.credential) {
-        // This gives you a Google Access Token.
         let token = result.credential.accessToken;
       }
       let user = result.user;
     });
-
-    // Start a sign in process for an unauthenticated user.
     let provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('profile');
     provider.addScope('email');
@@ -30,12 +25,42 @@ export const authAPI: any = {
   }
 };
 
+export const userMamageAPI: any = {
+  cnangeUserPhoto(userName: string, image: any){
+    firebase.storage().ref(`images/` + userName + `/` + image.name).put(image)
+    .on(
+      "state_changed",
+      (snapshot:any) =>{},
+      (error: any) => {
+        console.log(error);
+      },
+      () => {
+        firebase.storage()
+          .ref("images")
+          .child(userName + '/' + image.name)
+          .getDownloadURL()
+          .then((url) => {
+            const user = firebase.auth().currentUser;
+            if(user != null){
+              user.updateProfile({
+                photoURL: url
+              }).then(function() {
+                firebase.auth().updateCurrentUser(user);
+              }).catch(function(error) {
+                alert("Some error")
+              });
+            }
+          });
+      }
+    )
+  }
+}
+
 export const managePostAPI: any = {
   uploadImage(name: string, image: any) {
     return firebase.storage().ref(`images/` + name + `/` + image.name).put(image)
   },
-  uploadPostData(name: string, postImage: string, postData: string, uploadTime: string) {
-
+  uploadPostData(name: string, postImage: string, postData: string, uploadTime: string, userID: string, userPhoto: string) {
     return firebase.firestore().collection("usersPosts").doc()
     .set({
       name: name,
@@ -43,7 +68,9 @@ export const managePostAPI: any = {
       postData: postData,
       uploadTime: uploadTime,
       postComments: [],
-      whoLikedPost: []
+      whoLikedPost: [],
+      userID: userID,
+      userPhoto: userPhoto
     });
   },
   uploadWhoLikedPostData(postID: string, userID: string) {
@@ -58,15 +85,12 @@ export const managePostAPI: any = {
       whoLikedPost: firebase.firestore.FieldValue.arrayRemove(userID)
     })
   },
-  uploadNewPostComment(postID: string, owner: string, comment: string) {
+  uploadNewPostComment(postID: string, owner: string, ownerImage: string, comment: string,) {
     return firebase.firestore().collection("usersPosts").doc(postID)
     .update({
-      postComments: firebase.firestore.FieldValue.arrayUnion({owner, comment})
+      postComments: firebase.firestore.FieldValue.arrayUnion({owner, ownerImage, comment})
     })
   }
-  // getPostData(email: string) {
-  //   return firebase.firestore().collection("usersPosts").doc(email).get()
-  // },
   // async getAllPosts() {
   //   const snapshot = await firebase.firestore().collection('usersPosts').get()
   //   return snapshot.docs.map(doc => console.log(doc.data()));

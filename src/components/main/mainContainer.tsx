@@ -1,12 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Route } from 'react-router-dom'
 import HeaderConatiner from '../header/headerContainer'
 import style from './mainContainer.module.scss'
-// import AddPostButton from './addPostButton/addPostButton'
 import PostsContainer from './Posts/postsConatainer'
-import ModalWindowContainer from './Posts/post/modalWindow/modalWindowContainer'
+import ModalWindowContainer from '../modalWindow/modalWindowContainer'
 import { turnOffNewPostNotification, resetNewPosts, setPost } from '../../redux/posts/actions'
+import ProfileContainer from '../profile/profileContainer'
 
 interface IProps {
   logout: any,
@@ -27,23 +27,25 @@ class MainContainer extends React.Component<IProps>{
     })
     this.props.resetNewPosts()
     this.props.turnOffNewPostNotification()
-     //console.log(this.props.newPosts)
   }
 
   render() {
-    if (!this.props.isAuth) {
-      return <Redirect to={"/"} />
-    } 
+    // if (!this.props.isAuth) {
+    //   return <Redirect to={"/"} />
+    // } 
     return(
     <>
       <HeaderConatiner />
+
       <div className={style.wrapperToMain}>
 
+        {/* <Route path="/main/profile/" component={ProfileContainer} /> */}
+
         <ModalWindowContainer />
-
         { this.props.addedNewPost && <button className={style.addedNewPost} onClick={this.addingNewPostToState}>Added new post</button> }
-
-        <PostsContainer />
+        
+        <Route exact path="/main" component={PostsContainer}/>
+        {/* <PostsContainer /> */}
 
       </div>
     </>

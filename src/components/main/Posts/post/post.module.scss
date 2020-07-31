@@ -14,11 +14,6 @@
   display: flex;
   align-items: center;
   padding: 10px;
-  img{
-    height: 32px;
-    width: 32px;
-    display: flex;
-  }
 }
 
 .ownerPhoto{
@@ -39,10 +34,13 @@
   .likesButton button{
     border: none;
     background-color: transparent;
-    font-size: 24px;
+    
     cursor: pointer;
     height: 24px;
     width: 24px;
+    i{
+      font-size: 24px;
+    }
     .active{
       color: #ED4956;
     }
@@ -71,6 +69,10 @@
     color: #262626;
     font-family: 'Noto Sans KR', sans-serif;
   }
+}
+
+.ownerName{
+  margin-left: 15px;
 }
 
 @media screen and (max-width: 650px) {
