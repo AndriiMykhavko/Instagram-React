@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from './header';
 import { connect } from 'react-redux';
-import { logout } from '../../redux/authReducer'
+import { logout } from '../../redux/auth/action'
 
 interface IProps {
   logout: any,

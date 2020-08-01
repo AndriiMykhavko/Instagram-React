@@ -1,41 +1,19 @@
-import { authAPI } from "../api/api";
+import { authAPI } from "../../api/api";
+import types from './types'
 
-const SET_USER_AUTH = "SET_USER_AUTH";
 
-const initialState = {
-  isAuth: false,
-  name: '',
-  userID: '',
-  userPhoto: null
-};
+export const actionCreator = (type: string, payload: any ) => ({
+  type,
+  payload 
+})
 
-export const authReducer = (state = initialState, action: any) => {
-  switch (action.type) {
-    case SET_USER_AUTH: {
-      return {
-        isAuth: action.isAuth,
-        name: action.displayName,
-        userID: action.userID,
-        userPhoto: action.userPhoto
-      };
-    }
-    default:
-      return state;
-  }
-};
+export const logInUser = (displayName: string, userID: string, userPhoto: string, isAuth = true) => (dispatch: any) => {
+  dispatch(actionCreator(types.SET_USER_AUTH, {displayName, userID, userPhoto, isAuth}))
+}
 
-export const logInUser = (displayName: string, userID: string, userPhoto: string, isAuth = true) => ({
-  type: SET_USER_AUTH,
-  isAuth,
-  displayName,
-  userID,
-  userPhoto
-});
-export const logoutUser = (email = '', isAuth = false) => ({
-  type: SET_USER_AUTH,
-  isAuth,
-  email,
-});
+export const logoutUser = (displayName = '', userID = '', userPhoto = null, isAuth = false) => (dispatch: any) => {
+  dispatch(actionCreator(types.SET_USER_AUTH, {displayName, userID, userPhoto, isAuth}))
+}
 
 export const login = (email: string, password: string) => (dispatch: any) => {
   authAPI

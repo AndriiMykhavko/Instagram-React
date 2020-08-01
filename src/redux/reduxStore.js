@@ -1,9 +1,10 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunkMiddleware from "redux-thunk";
 import { reducer as formReducer } from "redux-form";
-import { authReducer } from "./authReducer";
+import { authReducer } from "./auth/index";
 import { postsReducer } from "./posts/index";
 import { profileReducer } from "./profile/index";
+import logger from "redux-logger";
 
 let reducers = combineReducers({
   auth: authReducer,
@@ -12,7 +13,7 @@ let reducers = combineReducers({
   form: formReducer,
 });
 
-let store = createStore(reducers, applyMiddleware(thunkMiddleware));
+let store = createStore(reducers, applyMiddleware(thunkMiddleware, logger));
 
 window.store = store;
 

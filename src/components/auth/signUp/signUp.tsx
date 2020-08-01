@@ -4,7 +4,7 @@ import { Redirect, Link } from 'react-router-dom';
 import { required, maxLengthCreator, minLengthCreator } from '../../../utils/validators/validator';
 import { FormControl } from '../../common/formsControl/formsControl';
 import { connect } from 'react-redux';
-import { registration } from '../../../redux/authReducer'
+import { registration } from '../../../redux/auth/action'
 import styles from '../signIn/signInStyles.module.scss'
 
 

@@ -4,7 +4,7 @@ import { Redirect, Link } from 'react-router-dom';
 import { required, maxLengthCreator, minLengthCreator } from '../../../utils/validators/validator';
 import { FormControl } from '../../common/formsControl/formsControl';
 import { connect } from 'react-redux';
-import { login, googleAuth } from '../../../redux/authReducer'
+import { login, googleAuth } from '../../../redux/auth/action'
 import styles from './signInStyles.module.scss'
 import phone from '../../../assets/images/phone.png'
 

@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import CommentsSection from './commentsSection/commentsSection'
 import { UserPhotoSection } from '../../../userPhotoSection/userPhotoSection';
 import { IComment } from './commentsSection/comment/comment'
+import Moment from 'react-moment';
+import PostCommentsModal from './postCommentsModal/postCommentsModal'
 
 
 export interface IPost{
@@ -13,9 +15,9 @@ export interface IPost{
   postID: string,
   postImg: string,
   postData: string,
-  uploadTime: string,
+  uploadTime: any,
   userID: string,
-  ownerImage: string
+  ownerImage: string,
   likePost: (postID: string, userID: string) => void,
   unlikePost: (postID: string, userID: string) => void
 }
@@ -61,9 +63,18 @@ const Post = (props: IPost): JSX.Element => {
         {props.likes.length} likes
       </div>
       <div className={styles.postData}>
-        {props.uploadTime}
+        <Moment fromNow>{props.uploadTime}</Moment>
+        {/* {props.uploadTime} */}
       </div>
     </div>
+
+    { props.postComments.length > 0
+      && 
+      <div className={styles.postCommentModal}>
+        <PostCommentsModal postComments={props.postComments} />
+      </div>
+    }
+    
     
     <div className={styles.postText}>
       <Link to="#" className={styles.postOwnerName}>{props.owner}</Link>

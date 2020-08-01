@@ -42,6 +42,7 @@ class MainContainer extends React.Component<IProps>{
         {/* <Route path="/main/profile/" component={ProfileContainer} /> */}
 
         <ModalWindowContainer />
+        
         { this.props.addedNewPost && <button className={style.addedNewPost} onClick={this.addingNewPostToState}>Added new post</button> }
         
         <Route exact path="/main" component={PostsContainer}/>

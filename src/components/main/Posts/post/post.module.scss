@@ -28,7 +28,7 @@
 .postButtons{
   font-size: 24px;
   color: #262626;
-  padding: 10px 15px;
+  padding: 10px 15px 5px 15px;
   display: flex;
   flex-direction: column;
   .likesButton button{
@@ -60,6 +60,10 @@
   .postData{
     font-size: 14px;
   }
+}
+
+.postCommentModal{
+  margin: 0 0 5px 15px;
 }
 
 .postText{

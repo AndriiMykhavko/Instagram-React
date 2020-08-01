@@ -5,7 +5,7 @@ import SignInForm from './components/auth/signIn/signIn';
 import SignUpForm from './components/auth/signUp/signUp'
 import mainContainer from './components/main/mainContainer';
 import * as firebase from "firebase";
-import { logInUser } from './redux/authReducer'
+import { logInUser } from './redux/auth/action'
 import { connect } from 'react-redux';
 import { setPost, resetInitialLoad, setNewPost, turnOnNewPostNotification } from './redux/posts/actions';
 import ProfileContainer from './components/profile/profileContainer'

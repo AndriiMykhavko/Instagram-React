@@ -8,17 +8,18 @@ import TextareaAutosize from 'react-textarea-autosize';
 
 const AddNewCommentForm = (props: any) => {
   return (
-      <form className={styles.addNewCommentForm} onSubmit={props.handleSubmit} >
-              <div className={styles.textAreaWrapper}>
-                  <Field component={FormControl} el={TextareaAutosize} name="newCommentData" validate={[required]} 
-                  placeholder={"Add your comment..."} />
-              </div>
-              <div>
-              {props.invalid ? <button className={styles.dissabledButton} disabled>Publish</button> : <button>Publish</button>}
-                  {/* <button>Publish</button> */}
-              </div>
-      </form>
+    <form className={styles.addNewCommentForm} onSubmit={props.handleSubmit} >
+      <div className={styles.textAreaWrapper}>
+        <Field component={FormControl} el={TextareaAutosize} name="newCommentData" validate={[required]} 
+        placeholder={"Add your comment..."} />
+      </div>
+      <div>
+      {/* { props.invalid ? <button className={styles.dissabledButton} disabled={props.invalid}>Publish</button> : <button>Publish</button>} */}
+      <button className={props.invalid ? styles.dissabledButton : undefined} disabled={props.invalid}>Publish</button>
+          {/* <button>Publish</button> */}
+      </div>
+    </form>
   )
 }
 
-export default reduxForm({form: "addPostCommentForm"})(AddNewCommentForm);
+export default reduxForm({form: "addPostCommentForm", enableReinitialize: true, shouldValidate: () => true})(AddNewCommentForm);
