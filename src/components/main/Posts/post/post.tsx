@@ -68,7 +68,7 @@ const Post = (props: IPost): JSX.Element => {
       </div>
     </div>
 
-    { props.postComments.length > 0
+    { props.postComments.length > 3
       && 
       <div className={styles.postCommentModal}>
         <PostCommentsModal postComments={props.postComments} />

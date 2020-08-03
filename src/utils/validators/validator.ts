@@ -1,5 +1,4 @@
 export const required = (value: string) => {
-  console.log(value)
   if (value) return undefined;
   return "Filed is required";
 };

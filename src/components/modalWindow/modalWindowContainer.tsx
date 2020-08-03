@@ -1,6 +1,7 @@
 import React from'react'
 import ModalWindow from './modalWindow'
 import { connect } from 'react-redux'
+import { addPostIntoDB } from '../../redux/posts/actions'
 
 interface IProps {
   name: string,
@@ -8,10 +9,18 @@ interface IProps {
   userID: string
 }
 
-class ModalWindowContainer extends React.Component<IProps> {
+interface IDispatchRedux{
+  addPostIntoDB: (userName: string, postImage: any, postData: string, userID: string, userPhoto: string) => void
+}
+
+class ModalWindowContainer extends React.Component<IProps & IDispatchRedux> {
+  addPostIntoDB = (userName: string, postImage: any, postData: string, userID: string, userPhoto: string) => {
+    this.props.addPostIntoDB(userName, postImage, postData, userID, userPhoto)
+  }
+  
   render() {
     return(
-      <ModalWindow  name={this.props.name} userPhoto={this.props.userPhoto} userID={this.props.userID}/>
+      <ModalWindow  name={this.props.name} userPhoto={this.props.userPhoto} userID={this.props.userID} addPostIntoDB={this.addPostIntoDB}/>
     )
   }
 }
@@ -23,4 +32,9 @@ const mapStateToProps = (state: any) => {
     userID: state.auth.userID
   }
 }
-export default connect (mapStateToProps, {})(ModalWindowContainer)
+
+const mapDispatchToProps: IDispatchRedux = {
+  addPostIntoDB
+}
+
+export default connect (mapStateToProps, mapDispatchToProps)(ModalWindowContainer)

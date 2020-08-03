@@ -16,7 +16,8 @@ interface IProps{
   initialeLoad: boolean,
   resetInitialLoad: any,
   setNewPost: any,
-  turnOnNewPostNotification: any
+  turnOnNewPostNotification: any,
+  userID: string
 }
 
 class App extends React.Component<IProps> {
@@ -54,8 +55,10 @@ class App extends React.Component<IProps> {
           snapshot.docChanges().forEach((change) => {
             if (change.type === "added") {
                  console.log("Added", change.doc.data());
-                 this.props.setNewPost(change.doc.id, change.doc.data())
-                 this.props.turnOnNewPostNotification()
+                 if(change.doc.data().userID != this.props.userID) {
+                  this.props.setNewPost(change.doc.id, change.doc.data())
+                  this.props.turnOnNewPostNotification()
+                 }
             }
             if (change.type === "modified") {
                 console.log("Modified: ", change.doc.data());
@@ -85,7 +88,8 @@ class App extends React.Component<IProps> {
 const mapStateToProps = (state: any) => {
   return{
     isAuth: state.auth.isAuth,
-    initialeLoad: state.postsPage.initialeLoad
+    initialeLoad: state.postsPage.initialeLoad,
+    userID: state.auth.userID
   }
 }
 

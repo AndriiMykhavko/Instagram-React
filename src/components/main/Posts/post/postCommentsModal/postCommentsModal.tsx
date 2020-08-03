@@ -53,7 +53,7 @@ const PostCommentsModal = (props: any): JSX.Element => {
 
   return (
     <div>
-      <button onClick={openModal} className={ownStyle.seeAllCommentsButton}>See all comments: {props.postComments && props.postComments.length }</button>
+      <button onClick={openModal} className={ownStyle.seeAllCommentsButton}>See all comments: {props.postComments && props.postComments.length}</button>
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}

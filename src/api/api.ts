@@ -61,8 +61,9 @@ export const managePostAPI: any = {
     return firebase.storage().ref(`images/` + name + `/` + image.name).put(image)
   },
   uploadPostData(name: string, postImage: string, postData: string, uploadTime: string, userID: string, userPhoto: string) {
-    return firebase.firestore().collection("usersPosts").doc()
-    .set({
+    // return firebase.firestore().collection("usersPosts").doc()
+    return firebase.firestore().collection("usersPosts")
+    .add({
       name: name,
       postImage: postImage,
       postData: postData,

@@ -30,9 +30,9 @@ class MainContainer extends React.Component<IProps>{
   }
 
   render() {
-    // if (!this.props.isAuth) {
-    //   return <Redirect to={"/"} />
-    // } 
+    if (!this.props.isAuth) {
+      return <Redirect to={"/"} />
+    } 
     return(
     <>
       <HeaderConatiner />

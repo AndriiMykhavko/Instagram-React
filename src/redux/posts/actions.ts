@@ -58,7 +58,7 @@ export const addCommetnIntoDB = (postID: string, owner: string, ownerImage: stri
 });
 };
 
-export const addPostIntoDB = (name: string, postImage: any, postData: string, userId: string, userPhoto: string) => {
+export const addPostIntoDB = (name: string, postImage: any, postText: string, userID: string, userPhoto: string) => (dispatch: any) => {
   managePostAPI
     .uploadImage(name, postImage)
     .on(
@@ -73,12 +73,34 @@ export const addPostIntoDB = (name: string, postImage: any, postData: string, us
           .child(name + '/' + postImage.name)
           .getDownloadURL()
           .then((url) => {
-
+            debugger
             // const now = new Date().toLocaleString();
             const now = new Date().toUTCString()
             managePostAPI
-            .uploadPostData( name, url, postData, now, userId, userPhoto )
-            .then()
+            .uploadPostData( name, url, postText, now, userID, userPhoto )
+            .then(
+              function(docRef: any) {
+                debugger
+                // console.log("Document written with ID: ", docRef.id);
+                const postID = docRef.id
+                const whoLikedPost = [] as string[]
+                const postComments = [] as any[]
+                const postImage = url
+                const uploadTime = now
+                const postData = {
+                  name,
+                  postImage,
+                  postData: postText,
+                  whoLikedPost,
+                  postComments,
+                  uploadTime,
+                  userID,
+                  userPhoto
+                }
+                dispatch(actionCreator(types.SET_POST, {postID, postData}))
+              }
+              // setPost(, postData)
+            )
             .catch(function(error: any) {
               console.error("Error writing post: ", error);
             });
