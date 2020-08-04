@@ -10,6 +10,7 @@ export interface IReduxState{
   userPhoto: string,
   userID: string,
   posts: IPost[],
+  isAuth: boolean
 }
 
 interface IDispatchRedux{
@@ -17,7 +18,7 @@ interface IDispatchRedux{
   unlikePost: (postID: string, userID: string) => void
 }
 
-class ProfileCOntainer extends React.Component<IReduxState & IDispatchRedux>{
+class ProfileContainer extends React.Component<IReduxState & IDispatchRedux>{
 
   likePost = (postID: string, userID: string) => {
     this.props.likePost(postID, userID)
@@ -30,7 +31,9 @@ class ProfileCOntainer extends React.Component<IReduxState & IDispatchRedux>{
     return(
       <>
       <HeaderConatiner />
-      <Profile posts={this.props.posts} userName={this.props.userName} userPhoto={this.props.userPhoto} userID={this.props.userID} likePost={this.likePost} unlikePost ={this.unlikePost}/>
+      <Profile posts={this.props.posts} userName={this.props.userName} userPhoto={this.props.userPhoto} 
+      userID={this.props.userID} likePost={this.likePost} unlikePost ={this.unlikePost}
+      isAuth={this.props.isAuth}/>
       </>
     )
   }
@@ -41,7 +44,8 @@ const mapStateToProps = (state: any): IReduxState => {
     userName: state.auth.name,
     userPhoto: state.auth.userPhoto,
     posts: state.postsPage.posts,
-    userID: state.auth.userID
+    userID: state.auth.userID,
+    isAuth: state.auth.isAuth
   }
 }
 
@@ -50,4 +54,4 @@ const mapDispatchToProps: IDispatchRedux = {
   unlikePost
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileCOntainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer)

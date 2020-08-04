@@ -4,12 +4,14 @@ import { UserPhotoSection } from '../userPhotoSection/userPhotoSection'
 import ChangeUserPhotoModal from './changeUserPhotoModal/changeUserPhotoModal'
 import Post from '../main/Posts/post/post'
 import { IPost } from '../main/Posts/post/post'
+import { Redirect } from 'react-router-dom'
 
 interface IProps {
   userName: string,
   userPhoto: string,
   userID: string,
   posts: IPost[],
+  isAuth: boolean,
   likePost: (postID: string, userID: string) => void,
   unlikePost: (postID: string, userID: string) => void
 }
@@ -22,6 +24,11 @@ const Profile = (props: IProps): JSX.Element => {
         postData={post.postData} uploadTime={post.uploadTime} userID={props.userID}
         likePost={props.likePost} unlikePost={props.unlikePost} ownerImage={post.ownerImage}/> 
   )
+
+  if (!props.isAuth) {
+    return <Redirect to={"/"} />
+  } 
+
   return(
     <div className={styles.profileWrapper}>
       <div className={styles.profileInfoWrapper}>

@@ -25,14 +25,18 @@ class MainContainer extends React.Component<IProps>{
     this.props.newPosts.map((post, index) => {
       this.props.setPost(post.postID, post.postData)
     })
+    window.focus()
+    window.scrollTo( 0, 0 )
     this.props.resetNewPosts()
     this.props.turnOffNewPostNotification()
   }
 
   render() {
+    
     if (!this.props.isAuth) {
       return <Redirect to={"/"} />
     } 
+
     return(
     <>
       <HeaderConatiner />

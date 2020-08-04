@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Redirect, Link } from 'react-router-dom';
-import { required, maxLengthCreator, minLengthCreator } from '../../../utils/validators/validator';
+import { required, emailValidation } from '../../../utils/validators/validator';
 import { FormControl } from '../../common/formsControl/formsControl';
 import { connect } from 'react-redux';
 import { login, googleAuth } from '../../../redux/auth/action'
@@ -18,7 +18,7 @@ const SignInForm: React.FC <IProps> = (props) => {
       <>
         <form onSubmit={props.handleSubmit} >
           <div className={styles.margBottom}>
-            <Field placeholder={"Email"} el="input" type="text" validate={[required]} name={"email"} component={FormControl} />
+            <Field placeholder={"Email"} el="input" type="text" validate={[required, emailValidation]} name={"email"} component={FormControl} />
           </div>
           <div className={styles.margBottom}>
             <Field placeholder={"Password"} el="input" type="password" validate={[required]} name={"password"} component={FormControl} />
