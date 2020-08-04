@@ -20,7 +20,7 @@ const SignUpForm: React.FC <IProps> = (props) => {
         <>
           <form onSubmit={props.handleSubmit} >
            <div className={styles.margBottom}>
-              <Field placeholder={"Name"} el="input" type="text" validate={[required, emailValidation]} name={"name"} component={FormControl} />
+              <Field placeholder={"Name"} el="input" type="text" validate={[required, emailValidation, maxLendthField10]} name={"name"} component={FormControl} />
             </div>
             <div className={styles.margBottom}>
               <Field placeholder={"Email"} el="input" type="text" validate={[required]} name={"email"} component={FormControl} />
