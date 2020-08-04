@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Redirect, Link } from 'react-router-dom';
-import { required, maxLengthCreator, minLengthCreator } from '../../../utils/validators/validator';
+import { required, emailValidation, maxLengthCreator, minLengthCreator } from '../../../utils/validators/validator';
 import { FormControl } from '../../common/formsControl/formsControl';
 import { connect } from 'react-redux';
 import { registration } from '../../../redux/auth/action'
@@ -20,7 +20,7 @@ const SignUpForm: React.FC <IProps> = (props) => {
         <>
           <form onSubmit={props.handleSubmit} >
            <div className={styles.margBottom}>
-              <Field placeholder={"Name"} el="input" type="text" validate={[required, maxLendthField10]} name={"name"} component={FormControl} />
+              <Field placeholder={"Name"} el="input" type="text" validate={[required, emailValidation]} name={"name"} component={FormControl} />
             </div>
             <div className={styles.margBottom}>
               <Field placeholder={"Email"} el="input" type="text" validate={[required]} name={"email"} component={FormControl} />
