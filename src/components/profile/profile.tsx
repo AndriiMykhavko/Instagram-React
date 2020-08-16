@@ -16,7 +16,7 @@ interface IProps {
   unlikePost: (postID: string, userID: string) => void
 }
 
-const Profile = (props: IProps): JSX.Element => {
+const Profile: React.FC<IProps> = (props)=> {
   let usersPost = props.posts.filter( (item: any) => item.ownerID === props.userID )
   let postsElements = usersPost.map( (post: IPost, index) => 
   <Post likes={post.likes} owner={post.owner} key={index}

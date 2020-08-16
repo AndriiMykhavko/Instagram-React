@@ -11,12 +11,15 @@ export interface IComment{
 const Comment = (props: IComment): JSX.Element => {
   return(
     <div className={styles.comment}>
-        <UserPhotoSection userPhoto={props.ownerImage}/>
-        <div className={styles.commentText}>
-          <span className={styles.ownerName}> {props.owner} </span>
-          {props.comment}
-        </div>
+      
+      <UserPhotoSection userPhoto={props.ownerImage}/>
+
+      <div className={styles.commentText}>
+        <span className={styles.ownerName}> {props.owner} </span>
+        {props.comment}
       </div>
+      
+    </div>
   )
 }
 

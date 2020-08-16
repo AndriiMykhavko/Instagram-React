@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 import { Redirect, Link } from 'react-router-dom';
 import { required, emailValidation } from '../../../utils/validators/validator';
 import { FormControl } from '../../common/formsControl/formsControl';
@@ -8,12 +8,7 @@ import { login, googleAuth } from '../../../redux/auth/action'
 import styles from './signInStyles.module.scss'
 import phone from '../../../assets/images/phone.png'
 
-
-interface IProps {
-  handleSubmit: any
-}
-
-const SignInForm: React.FC <IProps> = (props) => {
+const SignInForm: React.FC <InjectedFormProps> = (props) => {
     return (
       <>
         <form onSubmit={props.handleSubmit} >
@@ -34,7 +29,17 @@ const SignInForm: React.FC <IProps> = (props) => {
 
 const LoginReduxForm = reduxForm({form: 'login'})(SignInForm)
 
-const Login = (props: any) => {
+
+export interface IPropsSignIn{
+  isAuth: boolean
+}
+
+interface IDispatchRedux{
+  login: (email: string, password: string) => void,
+  googleAuth: () => void
+}
+
+const Login: React.FC<IPropsSignIn & IDispatchRedux> = (props) => {
     const onSubmit = (formData: any) => {
         props.login(formData.email, formData.password);
     }
@@ -67,4 +72,9 @@ const mapStateToProps = (state: any) => ({
    isAuth: state.auth.isAuth
 })
 
-export default connect(mapStateToProps, { login, googleAuth }) (Login);
+const mapDispatchToProps:IDispatchRedux = {
+  login,
+  googleAuth
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (Login);

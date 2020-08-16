@@ -14,9 +14,7 @@ const AddNewCommentForm = (props: any) => {
         placeholder={"Add your comment..."} />
       </div>
       <div>
-      {/* { props.invalid ? <button className={styles.dissabledButton} disabled={props.invalid}>Publish</button> : <button>Publish</button>} */}
       <button className={props.invalid ? styles.dissabledButton : undefined} disabled={props.invalid}>Publish</button>
-          {/* <button>Publish</button> */}
       </div>
     </form>
   )

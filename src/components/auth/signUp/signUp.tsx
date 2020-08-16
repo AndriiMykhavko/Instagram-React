@@ -1,21 +1,19 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 import { Redirect, Link } from 'react-router-dom';
 import { required, emailValidation, maxLengthCreator, minLengthCreator } from '../../../utils/validators/validator';
 import { FormControl } from '../../common/formsControl/formsControl';
 import { connect } from 'react-redux';
 import { registration } from '../../../redux/auth/action'
 import styles from '../signIn/signInStyles.module.scss'
+import { IPropsSignIn } from '../signIn/signIn'
 
 
 const maxLendthField10 = maxLengthCreator(10);
 const minLengthField7 = minLengthCreator(7);
 
-interface IProps {
-  handleSubmit: any
-}
 
-const SignUpForm: React.FC <IProps> = (props) => {
+const SignUpForm: React.FC <InjectedFormProps> = (props) => {
     return (
         <>
           <form onSubmit={props.handleSubmit} >
@@ -38,7 +36,11 @@ const SignUpForm: React.FC <IProps> = (props) => {
 
 const LoginReduxForm = reduxForm({form: 'login'})(SignUpForm)
 
-const Login = (props: any) => {
+interface IReduxDispatch{
+  registration: (name: string, email: string, password: string) => void
+}
+
+const Login: React.FC<IPropsSignIn & IReduxDispatch> = (props) => {
     const onSubmit = (formData: any) => {
         props.registration(formData.name, formData.email, formData.password);
     }
@@ -69,4 +71,8 @@ const mapStateToProps = (state: any) => ({
    isAuth: state.auth.isAuth
 })
 
-export default connect(mapStateToProps, {registration}) (Login);
+const mapDispatchToProps: IReduxDispatch = {
+  registration
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (Login);

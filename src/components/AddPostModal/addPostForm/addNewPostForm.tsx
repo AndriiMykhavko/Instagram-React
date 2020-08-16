@@ -1,13 +1,13 @@
 import React from "react";
 import { FormControl } from '../../common/formsControl/formsControl';
 import { maxLengthCreator, required } from "../../../utils/validators/validator";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm, InjectedFormProps } from "redux-form";
 import styles from './addNewPostForm.module.scss'
 import UploadPhoto from "./uploadImgPreview/imgPreview";
 
 const maxLendthField500 = maxLengthCreator(500);
 
-const AddNewPostForm = (props: any) => {
+const AddNewPostForm: React.FC<InjectedFormProps> = (props) => {
   return (
       <form className={styles.addNewPostForm} onSubmit={props.handleSubmit} >
               <div className={styles.margTop}>

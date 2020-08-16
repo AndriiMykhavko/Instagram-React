@@ -61,7 +61,6 @@ export const managePostAPI: any = {
     return firebase.storage().ref(`images/` + name + `/` + image.name).put(image)
   },
   uploadPostData(name: string, postImage: string, postData: string, uploadTime: string, userID: string, userPhoto: string) {
-    // return firebase.firestore().collection("usersPosts").doc()
     return firebase.firestore().collection("usersPosts")
     .add({
       name: name,
@@ -92,8 +91,4 @@ export const managePostAPI: any = {
       postComments: firebase.firestore.FieldValue.arrayUnion({owner, ownerImage, comment})
     })
   }
-  // async getAllPosts() {
-  //   const snapshot = await firebase.firestore().collection('usersPosts').get()
-  //   return snapshot.docs.map(doc => console.log(doc.data()));
-  // }
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-// import PostContainer from './post/postContainer'
 import Post from './post/post'
 import { IPost } from './post/post'
 
@@ -17,6 +16,7 @@ const Posts = (props: IProps): JSX.Element => {
         postData={post.postData} uploadTime={post.uploadTime} userID={props.userID}
         likePost={props.likePost} unlikePost={props.unlikePost} ownerImage={post.ownerImage}/> 
   )
+  
   return(
     <div>
       {postsElements}

@@ -1,10 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
-import style from './modalWindow.module.scss'
+import style from './AddPostModal.module.scss'
 import AddNewPostForm from './addPostForm/addNewPostForm'
-//import '../../../../userPhotoSection/node_modules/@fortawesome/fontawesome-free/css/all.min.css';
-// import { addPostIntoDB } from '../../redux/posts/actions';
 
 const customStyles = {
   content : {
@@ -15,13 +12,9 @@ const customStyles = {
     marginRight           : '-50%',
     transform             : 'translate(-50%, -50%)',
     border                : '1px solid #DBDBDB',
-    // width                 : '500px'
-    //width                 : '80%'
+    borderRadius          : '20px'
   }
 };
- 
-// Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
-Modal.setAppElement('#root')
  
 interface IProps{
   name: string,
@@ -30,16 +23,13 @@ interface IProps{
   addPostIntoDB: (userName: string, postImage: any, postData: string, userID: string, userPhoto: string) => void
 }
 
-const ModalWindow = (props: any): JSX.Element => {
-  var subtitle;
+const AddPostModal: React.FC<IProps> = (props) => {
   const [modalIsOpen,setIsOpen] = React.useState(false);
   function openModal() {
     setIsOpen(true);
   }
  
   function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    // subtitle.style.color = '#f00';
   }
  
   function closeModal(){
@@ -47,12 +37,8 @@ const ModalWindow = (props: any): JSX.Element => {
   }
 
   const addNewPost = (value: any) => {
-    // console.log(value.newFileBody.name)
     props.addPostIntoDB(props.name, value.postImage, value.postMessage, props.userID, props.userPhoto)
     closeModal()
-    // return console.log(value.newMessageBody)
-    // value.newFileBody.name
-    // value.newMessageBody
   }
 
   return (
@@ -65,8 +51,6 @@ const ModalWindow = (props: any): JSX.Element => {
         style={customStyles}
         contentLabel="Example Modal"
       >
-
-        {/* <h2 ref={_subtitle => (subtitle = _subtitle)}>Hello</h2> */}
         <div className={style.modalWindow}>
           <div className={style.closePostButtonWrapper}>
             <button onClick={closeModal} className={style.closePostButton}><i className="fas fa-times"></i></button>
@@ -79,6 +63,5 @@ const ModalWindow = (props: any): JSX.Element => {
   );
 }
  
-ReactDOM.render(<ModalWindow />, document.getElementById('root'));
 
-export default ModalWindow;
+export default AddPostModal;

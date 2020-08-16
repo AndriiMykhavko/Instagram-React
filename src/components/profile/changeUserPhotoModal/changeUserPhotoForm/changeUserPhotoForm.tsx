@@ -1,10 +1,10 @@
 import React from "react";
 import { required } from "../../../../utils/validators/validator";
-import { Field, reduxForm } from "redux-form";
-import styles from '../../../modalWindow/addPostForm/addNewPostForm.module.scss'
-import UploadPhoto from "../../../modalWindow/addPostForm/uploadImgPreview/imgPreview";
+import { Field, reduxForm, InjectedFormProps } from "redux-form";
+import styles from '../../../AddPostModal/addPostForm/addNewPostForm.module.scss'
+import UploadPhoto from "../../../AddPostModal/addPostForm/uploadImgPreview/imgPreview";
 
-const ChangeUserPhotoForm = (props: any) => {
+const ChangeUserPhotoForm: React.FC<InjectedFormProps> = (props) => {
   return (
       <form className={styles.addNewPostForm} onSubmit={props.handleSubmit} >
               <div className={styles.margTop}>

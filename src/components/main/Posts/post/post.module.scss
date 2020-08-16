@@ -21,7 +21,6 @@
   justify-content: center;
   img{
     max-width: 100%;
-    // width: 100%;
   }
 }
 
@@ -34,7 +33,6 @@
   .likesButton button{
     border: none;
     background-color: transparent;
-    
     cursor: pointer;
     height: 24px;
     width: 24px;
@@ -69,10 +67,6 @@
 .postText{
   font-family: 'Karla', sans-serif;
   padding: 0 15px;
-  span{
-    color: #262626;
-    font-family: 'Noto Sans KR', sans-serif;
-  }
 }
 
 .ownerName{

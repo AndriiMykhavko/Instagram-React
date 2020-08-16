@@ -4,25 +4,24 @@ import { Redirect, Route } from 'react-router-dom'
 import HeaderConatiner from '../header/headerContainer'
 import style from './mainContainer.module.scss'
 import PostsContainer from './Posts/postsConatainer'
-import ModalWindowContainer from '../modalWindow/modalWindowContainer'
+import AddPostModalContainer from '../AddPostModal/AddPostModalContainer'
 import { turnOffNewPostNotification, resetNewPosts, setPost } from '../../redux/posts/actions'
-import ProfileContainer from '../profile/profileContainer'
 
 interface IProps {
-  logout: any,
-  state: any,
   isAuth: boolean,
   addedNewPost: boolean,
-  newPosts: any[],
-  setNewPostToPosts: any,
-  turnOffNewPostNotification: any,
-  resetNewPosts: any,
-  setPost: any
+  newPosts: any[]
 }
 
-class MainContainer extends React.Component<IProps>{
+interface IDispatchRedux{
+  turnOffNewPostNotification: () => void,
+  resetNewPosts: () => void,
+  setPost: (postID: string, postData: any) => void
+}
+
+class MainContainer extends React.Component<IProps & IDispatchRedux>{
   addingNewPostToState = () => {
-    this.props.newPosts.map((post, index) => {
+    this.props.newPosts.map((post) => {
       this.props.setPost(post.postID, post.postData)
     })
     window.focus()
@@ -43,15 +42,12 @@ class MainContainer extends React.Component<IProps>{
 
       <div className={style.wrapperToMain}>
 
-        {/* <Route path="/main/profile/" component={ProfileContainer} /> */}
-
-        <ModalWindowContainer />
+        <AddPostModalContainer />
         
         { this.props.addedNewPost && <button className={style.addedNewPost} onClick={this.addingNewPostToState}>Added new post</button> }
         
         <Route exact path="/main" component={PostsContainer}/>
-        {/* <PostsContainer /> */}
-
+        
       </div>
     </>
     )
@@ -66,4 +62,10 @@ const MapStateToProps = (state: any) => {
   }
 }
 
-export default connect (MapStateToProps, {turnOffNewPostNotification, resetNewPosts, setPost}) (MainContainer)
+const mapDispatchToProps: IDispatchRedux = {
+  turnOffNewPostNotification,
+  resetNewPosts,
+  setPost
+}
+
+export default connect (MapStateToProps, mapDispatchToProps) (MainContainer)

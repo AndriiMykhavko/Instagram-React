@@ -38,7 +38,7 @@ const mapDispatchToProps = (dispatch: any) => {
     addNewComment: (postID: string, owner: string, ownerImage: string, newCommentText: string) => {
       dispatch(addCommetnIntoDB(postID, owner, ownerImage, newCommentText));
       dispatch(reset('addPostCommentForm'));
-  }
+    }
   }
 }
 

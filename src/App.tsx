@@ -1,8 +1,8 @@
 import React from 'react';
-import s from'./App.module.scss';
+import styles from'./App.module.scss';
 import { Route } from 'react-router-dom';
 import SignInForm from './components/auth/signIn/signIn';
-import SignUpForm from './components/auth/signUp/signUp'
+import SignUpForm from './components/auth/signUp/signUp';
 import mainContainer from './components/main/mainContainer';
 import * as firebase from "firebase";
 import { logInUser } from './redux/auth/action'
@@ -11,38 +11,30 @@ import { setPost, resetInitialLoad, setNewPost, turnOnNewPostNotification } from
 import ProfileContainer from './components/profile/profileContainer'
 
 interface IProps{
-  logInUser: any,
-  setPost?: any,
   initialeLoad: boolean,
-  resetInitialLoad: any,
-  setNewPost: any,
-  turnOnNewPostNotification: any,
   userID: string
 }
 
-class App extends React.Component<IProps> {
+interface IReduxDispatch{
+  logInUser: (userName: string, userID: string, userPhoto: string) => void,
+  setPost: (postID: string, postData: {}) => void,
+  resetInitialLoad: () => void,
+  setNewPost: (postID: string, postData: {}) => void,
+  turnOnNewPostNotification: () => void  
+}
+
+class App extends React.Component<IProps & IReduxDispatch> {
     componentDidMount() {
       firebase.auth().onIdTokenChanged(
           (user) => {
             if (user !== null) {
-              this.props.logInUser(user.displayName, user.uid, user.photoURL);
+              this.props.logInUser(user.displayName!, user.uid, user.photoURL!);
             }
             if (user && user.displayName === null) {
               firebase.auth().updateCurrentUser(user);
             }
           }
       );
-    // addPostAPI.getAllPosts()
-
-      // firebase.firestore().collection("usersPosts")
-      // .orderBy("uploadTime", "asc").onSnapshot((snapshot) => {
-      //   this.props.resetPosts()
-      //   //console.log("Listener for all" + " " + this.props.posts.length)
-      //   //debugger
-      //     snapshot.forEach(
-      //       (doc: any) => this.props.setPost(doc.id, doc.data())
-      //       )
-      // })
 
       firebase.firestore().collection("usersPosts")
       .orderBy("uploadTime", "asc").onSnapshot((snapshot) => {
@@ -54,7 +46,6 @@ class App extends React.Component<IProps> {
         } else {
           snapshot.docChanges().forEach((change) => {
             if (change.type === "added") {
-                 console.log("Added", change.doc.data());
                  if(change.doc.data().userID != this.props.userID) {
                   this.props.setNewPost(change.doc.id, change.doc.data())
                   this.props.turnOnNewPostNotification()
@@ -74,7 +65,7 @@ class App extends React.Component<IProps> {
 
   render() {
     return (
-      <div className={s.mainWrapper}>
+      <div className={styles.mainWrapper}>
         <Route exact path="/" component={SignInForm}/>
         <Route path="/signUp" component={SignUpForm}/>
         <Route path="/main" component={mainContainer}/>
@@ -87,11 +78,17 @@ class App extends React.Component<IProps> {
 
 const mapStateToProps = (state: any) => {
   return{
-    isAuth: state.auth.isAuth,
     initialeLoad: state.postsPage.initialeLoad,
     userID: state.auth.userID
   }
 }
 
+const mapDispatchToProps: IReduxDispatch = {
+  logInUser,
+  setPost,
+  resetInitialLoad,
+  setNewPost,
+  turnOnNewPostNotification
+}
 
-export default connect(mapStateToProps, {logInUser, setPost, resetInitialLoad, setNewPost, turnOnNewPostNotification})(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

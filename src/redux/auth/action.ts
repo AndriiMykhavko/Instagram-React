@@ -18,12 +18,7 @@ export const logoutUser = (displayName = '', userID = '', userPhoto = null, isAu
 export const login = (email: string, password: string) => (dispatch: any) => {
   authAPI
     .login(email, password)
-    .then((response: any) => {
-      //console.log(response)
-      if(response.user.email.length !== 0) {
-        // dispatch(logInUser())
-      }
-    })
+    .then()
     .catch((error: any) => alert(error));
 };
 
@@ -36,8 +31,6 @@ export const registration = ( name: string, email: string, password: string) => 
           displayName: name,
         })
       }
-      // console.log(response)
-      // debugger
     })
     .catch((error: any) => alert(error));
 };

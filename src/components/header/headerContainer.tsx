@@ -4,15 +4,22 @@ import { connect } from 'react-redux';
 import { logout } from '../../redux/auth/action'
 
 interface IProps {
-  logout: any,
   userPhoto: string
-}  
+}
 
-class HeaderConatiner extends React.Component<IProps>{
+interface IDispatchRedux{
+  logout: () => void
+}
+
+class HeaderConatiner extends React.Component<IProps & IDispatchRedux>{
+  logout = () => {
+    this.props.logout()
+  }
+
   render() {
     return(
       <div>
-        <Header logout={this.props.logout} userPhoto={this.props.userPhoto} />
+        <Header logout={this.logout} userPhoto={this.props.userPhoto} />
       </div>
     )
   }
@@ -23,4 +30,9 @@ const mapStateToProps = (state: any) => {
     userPhoto: state.auth.userPhoto
   }
 }
-export default connect(mapStateToProps, {logout}) (HeaderConatiner);
+
+const mapDispatchToProps: IDispatchRedux = {
+  logout 
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (HeaderConatiner);

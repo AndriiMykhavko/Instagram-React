@@ -2,9 +2,9 @@ import React from 'react'
 import styles from'./post.module.scss'
 import { Link } from 'react-router-dom'
 import CommentsSection from './commentsSection/commentsSection'
-import { UserPhotoSection } from '../../../userPhotoSection/userPhotoSection';
+import { UserPhotoSection } from '../../../userPhotoSection/userPhotoSection'
 import { IComment } from './commentsSection/comment/comment'
-import Moment from 'react-moment';
+import Moment from 'react-moment'
 import PostCommentsModal from './postCommentsModal/postCommentsModal'
 
 
@@ -40,7 +40,7 @@ const Post = (props: IPost): JSX.Element => {
       </Link>
       
       <div className={styles.ownerName}>
-    <Link to="#" className={styles.postOwnerName}>{props.owner}</Link>
+        <Link to="#" className={styles.postOwnerName}>{props.owner}</Link>
       </div>
     </div>
 
@@ -49,23 +49,26 @@ const Post = (props: IPost): JSX.Element => {
     </div>
 
     <div className={styles.postButtons}>
+
       <div className={styles.likesButton}>
         
       {props.likes.length === 0 ? <button onClick={() => likePost(props.postID, props.userID)}><i className="far fa-heart"></i></button>
           : 
           props.likes.find((item) => {
            return item === props.userID
-          }) === props.userID ? <button onClick={() => unlikePost(props.postID, props.userID)}><i className={`fas fa-heart`+" " + styles.active}></i></button> 
+          }) === props.userID ? <button onClick={() => unlikePost(props.postID, props.userID)}><i className={`fas fa-heart` + " " + styles.active}></i></button> 
           : <button onClick={() => likePost(props.postID, props.userID)}><i className="far fa-heart" ></i></button>
       }
       </div>
+
       <div className={styles.likesCount}>
         {props.likes.length} likes
       </div>
+
       <div className={styles.postData}>
         <Moment fromNow>{props.uploadTime}</Moment>
-        {/* {props.uploadTime} */}
       </div>
+      
     </div>
 
     { props.postComments.length > 3

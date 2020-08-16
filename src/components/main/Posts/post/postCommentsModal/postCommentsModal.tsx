@@ -1,7 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
-import style from '../../../../modalWindow/modalWindow.module.scss'
+import style from '../../../../AddPostModal/AddPostModal.module.scss'
 import ownStyle from './postCommentsModal.module.scss'
 import Comment from '../commentsSection/comment/comment'
 import { IComment } from '../commentsSection/comment/comment'
@@ -15,40 +14,32 @@ const customStyles = {
     marginRight           : '-50%',
     transform             : 'translate(-50%, -50%)',
     border                : '1px solid #DBDBDB',
-    // width                 : '500px'
-    //width                 : '80%'
+    borderRadius          : '20px'
   }
 };
  
-// Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
-Modal.setAppElement('#root')
  
 interface IProps{
-  
+  postComments: IComment[]
 }
 
-const PostCommentsModal = (props: any): JSX.Element => {
-  var subtitle;
+const PostCommentsModal: React.FC<IProps> = (props) => {
   const [modalIsOpen,setIsOpen] = React.useState(false);
   function openModal() {
     setIsOpen(true);
   }
  
   function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    // subtitle.style.color = '#f00';
   }
  
   function closeModal(){
     setIsOpen(false);
   }
 
-  // let postComments
-  // if(props.postComments){
+  
     const postComments = props.postComments?.slice(0).reverse().map( (commentData: IComment, index: any) => 
     <Comment  key={index} owner={commentData.owner} ownerImage={commentData.ownerImage} comment={commentData.comment}/>
     )
-  // }
  
 
   return (
@@ -62,7 +53,6 @@ const PostCommentsModal = (props: any): JSX.Element => {
         contentLabel="Example Modal"
       >
 
-        {/* <h2 ref={_subtitle => (subtitle = _subtitle)}>Hello</h2> */}
         <div className={`${style.modalWindow} ${ownStyle.modalWindow}`}>
           <div className={style.closePostButtonWrapper}>
             <button onClick={closeModal} className={style.closePostButton}><i className="fas fa-times"></i></button>
@@ -76,7 +66,5 @@ const PostCommentsModal = (props: any): JSX.Element => {
     </div>
   );
 }
- 
-ReactDOM.render(<PostCommentsModal />, document.getElementById('root'));
 
 export default PostCommentsModal;

@@ -16,15 +16,17 @@ const CommentsSection = (props: IProps): JSX.Element => {
   )
 
   return(
-      <div className={styles.addCommentSection}>
-        <div className={styles.texAreaSection}>
+    <div className={styles.addCommentSection}>
+
+      <div className={styles.texAreaSection}>
         <AddNewCommentFormContainer postID={props.postID}/>
-        </div>
-        <div className={styles.commentWrapper}>
-          {postComments}
-          
-        </div>
       </div>
+
+      <div className={styles.commentWrapper}>
+        {postComments}
+      </div>
+
+    </div>
   )
 }
 

@@ -73,15 +73,11 @@ export const addPostIntoDB = (name: string, postImage: any, postText: string, us
           .child(name + '/' + postImage.name)
           .getDownloadURL()
           .then((url) => {
-            debugger
-            // const now = new Date().toLocaleString();
             const now = new Date().toUTCString()
             managePostAPI
             .uploadPostData( name, url, postText, now, userID, userPhoto )
             .then(
               function(docRef: any) {
-                debugger
-                // console.log("Document written with ID: ", docRef.id);
                 const postID = docRef.id
                 const whoLikedPost = [] as string[]
                 const postComments = [] as any[]
@@ -99,13 +95,12 @@ export const addPostIntoDB = (name: string, postImage: any, postText: string, us
                 }
                 dispatch(actionCreator(types.SET_POST, {postID, postData}))
               }
-              // setPost(, postData)
             )
             .catch(function(error: any) {
               console.error("Error writing post: ", error);
             });
           })
-          .catch(function(error) {
+          .catch(function(error: any) {
             console.error("Error uploading photo: ", error);
         });
       }
