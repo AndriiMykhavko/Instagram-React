@@ -2,16 +2,10 @@ import React from 'react'
 import Header from './header';
 import { connect } from 'react-redux';
 import { logout } from '../../redux/auth/action'
+import { IHeaderProps, IHeaderDispatchRedux } from '../../../types';
 
-interface IProps {
-  userPhoto: string
-}
 
-interface IDispatchRedux{
-  logout: () => void
-}
-
-class HeaderConatiner extends React.Component<IProps & IDispatchRedux>{
+class HeaderConatiner extends React.Component<IHeaderProps & IHeaderDispatchRedux>{
   logout = () => {
     this.props.logout()
   }
@@ -31,7 +25,7 @@ const mapStateToProps = (state: any) => {
   }
 }
 
-const mapDispatchToProps: IDispatchRedux = {
+const mapDispatchToProps: IHeaderDispatchRedux = {
   logout 
 }
 

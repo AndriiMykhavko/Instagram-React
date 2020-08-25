@@ -1,24 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Profile from './profile'
-import { IPost } from '../main/Posts/post/post'
 import { likePost, unlikePost } from '../../redux/posts/actions'
 import HeaderConatiner from '../header/headerContainer'
+import { IProfileProps, IProfileDispatchRedux } from '../../../types'
 
-export interface IReduxState{
-  userName: string,
-  userPhoto: string,
-  userID: string,
-  posts: IPost[],
-  isAuth: boolean
-}
 
-interface IDispatchRedux{
-  likePost: (postID: string, userID: string) => void,
-  unlikePost: (postID: string, userID: string) => void
-}
-
-class ProfileContainer extends React.Component<IReduxState & IDispatchRedux>{
+class ProfileContainer extends React.Component<IProfileProps & IProfileDispatchRedux>{
 
   likePost = (postID: string, userID: string) => {
     this.props.likePost(postID, userID)
@@ -39,7 +27,7 @@ class ProfileContainer extends React.Component<IReduxState & IDispatchRedux>{
   }
 }
 
-const mapStateToProps = (state: any): IReduxState => {
+const mapStateToProps = (state: any): IProfileProps => {
   return{
     userName: state.auth.name,
     userPhoto: state.auth.userPhoto,
@@ -49,7 +37,7 @@ const mapStateToProps = (state: any): IReduxState => {
   }
 }
 
-const mapDispatchToProps: IDispatchRedux = {
+const mapDispatchToProps: IProfileDispatchRedux = {
   likePost,
   unlikePost
 }

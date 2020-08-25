@@ -38,7 +38,6 @@ export const registration = ( name: string, email: string, password: string) => 
 export const googleAuth = () => {
   authAPI
   .googleAuth()
-  .then( (response: any) => console.log(response))
 }
 
 export const logout = () => (dispatch: any) => {

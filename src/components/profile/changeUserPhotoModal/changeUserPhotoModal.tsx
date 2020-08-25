@@ -4,6 +4,7 @@ import style from '../../AddPostModal/AddPostModal.module.scss'
 import newStyles from './changeUserPhotoModal.module.scss'
 import ChangeUserPhotoForm from './changeUserPhotoForm/changeUserPhotoForm'
 import { setUserPhoto } from '../../../redux/profile/actions'
+import { IChangePhotoModalProps } from '../../../../types';
 
 const customStyles = {
   content : {
@@ -19,11 +20,7 @@ const customStyles = {
 };
  
 
-interface IProps{
-  userName: string
-}
-
-const ChangeUserPhotoModal: React.FC<IProps> = (props) => {
+const ChangeUserPhotoModal: React.FC<IChangePhotoModalProps> = (props) => {
   const [modalIsOpen,setIsOpen] = React.useState(false);
   function openModal() {
     setIsOpen(true);
@@ -38,7 +35,6 @@ const ChangeUserPhotoModal: React.FC<IProps> = (props) => {
 
   const changeUserPhoto = (value: any) => {
     setUserPhoto(props.userName, value.userImage)
-    console.log(value)
     closeModal()
   }
 

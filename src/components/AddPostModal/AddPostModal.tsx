@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import style from './AddPostModal.module.scss'
 import AddNewPostForm from './addPostForm/addNewPostForm'
+import { IAddPostModalProps, IAddPostModalDispatchRedux } from '../../../types';
 
 const customStyles = {
   content : {
@@ -16,14 +17,8 @@ const customStyles = {
   }
 };
  
-interface IProps{
-  name: string,
-  userPhoto: string,
-  userID: string,
-  addPostIntoDB: (userName: string, postImage: any, postData: string, userID: string, userPhoto: string) => void
-}
 
-const AddPostModal: React.FC<IProps> = (props) => {
+const AddPostModal: React.FC<IAddPostModalProps & IAddPostModalDispatchRedux> = (props) => {
   const [modalIsOpen,setIsOpen] = React.useState(false);
   function openModal() {
     setIsOpen(true);

@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import style from '../../../../AddPostModal/AddPostModal.module.scss'
 import ownStyle from './postCommentsModal.module.scss'
 import Comment from '../commentsSection/comment/comment'
-import { IComment } from '../commentsSection/comment/comment'
+import { IPostCommentsModalProps, IComment } from '../../../../../../types';
 
 const customStyles = {
   content : {
@@ -18,12 +18,8 @@ const customStyles = {
   }
 };
  
- 
-interface IProps{
-  postComments: IComment[]
-}
 
-const PostCommentsModal: React.FC<IProps> = (props) => {
+const PostCommentsModal: React.FC<IPostCommentsModalProps> = (props) => {
   const [modalIsOpen,setIsOpen] = React.useState(false);
   function openModal() {
     setIsOpen(true);
@@ -37,7 +33,7 @@ const PostCommentsModal: React.FC<IProps> = (props) => {
   }
 
   
-    const postComments = props.postComments?.slice(0).reverse().map( (commentData: IComment, index: any) => 
+    const postComments = props.postComments?.slice(0).reverse().map( (commentData: IComment, index: number) => 
     <Comment  key={index} owner={commentData.owner} ownerImage={commentData.ownerImage} comment={commentData.comment}/>
     )
  

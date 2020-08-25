@@ -3,20 +3,11 @@ import styles from './profile.module.scss'
 import { UserPhotoSection } from '../userPhotoSection/userPhotoSection'
 import ChangeUserPhotoModal from './changeUserPhotoModal/changeUserPhotoModal'
 import Post from '../main/Posts/post/post'
-import { IPost } from '../main/Posts/post/post'
 import { Redirect } from 'react-router-dom'
+import { IProfileDispatchRedux, IProfileProps, IPost } from '../../../types'
 
-interface IProps {
-  userName: string,
-  userPhoto: string,
-  userID: string,
-  posts: IPost[],
-  isAuth: boolean,
-  likePost: (postID: string, userID: string) => void,
-  unlikePost: (postID: string, userID: string) => void
-}
 
-const Profile: React.FC<IProps> = (props)=> {
+const Profile: React.FC<IProfileProps & IProfileDispatchRedux> = (props)=> {
   let usersPost = props.posts.filter( (item: any) => item.ownerID === props.userID )
   let postsElements = usersPost.map( (post: IPost, index) => 
   <Post likes={post.likes} owner={post.owner} key={index}

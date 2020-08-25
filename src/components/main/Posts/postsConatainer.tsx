@@ -1,19 +1,11 @@
 import React from 'react'
 import Posts from './posts'
 import { connect } from 'react-redux'
-import { IPost } from './post/post'
 import { likePost, unlikePost } from '../../../redux/posts/actions'
+import { IPostsProps, IPostsDispatchRedux } from '../../../../types'
 
-interface IReduxState{
-  posts: IPost[],
-  userID: string,
-}
-interface IDispatchRedux{
-  likePost: (postID: string, userID: string) => void,
-  unlikePost: (postID: string, userID: string) => void
-}
 
-class PostsContainer extends React.Component<IReduxState & IDispatchRedux>{
+class PostsContainer extends React.Component<IPostsProps & IPostsDispatchRedux>{
 
   likePost = (postID: string, userID: string) => {
     this.props.likePost(postID, userID)
@@ -27,14 +19,14 @@ class PostsContainer extends React.Component<IReduxState & IDispatchRedux>{
   }
 }
 
-const mapStateToProps = (state: any): IReduxState => {
+const mapStateToProps = (state: any): IPostsProps => {
   return{
     posts: state.postsPage.posts,
     userID: state.auth.userID
   }
 }
 
-const mapDispatchToProps: IDispatchRedux = {
+const mapDispatchToProps: IPostsDispatchRedux = {
   likePost,
   unlikePost
 }

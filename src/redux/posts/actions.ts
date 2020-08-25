@@ -63,7 +63,7 @@ export const addPostIntoDB = (name: string, postImage: any, postText: string, us
     .uploadImage(name, postImage)
     .on(
       "state_changed",
-      (snapshot:any) =>{},
+      () =>{},
       (error: any) => {
         console.log("Some error with image", error);
       },

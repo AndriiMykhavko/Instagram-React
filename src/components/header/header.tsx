@@ -3,13 +3,10 @@ import styles from './header.module.scss'
 import { UserPhotoSection } from '../userPhotoSection/userPhotoSection'
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { NavLink } from 'react-router-dom';
+import { IHeaderProps, IHeaderDispatchRedux } from '../../../types';
 
-interface IProps {
-  logout: () => void,
-  userPhoto: string
-} 
 
-const Header: React.FC<IProps> = (props: any) => {
+const Header: React.FC<IHeaderProps & IHeaderDispatchRedux> = (props) => {
   return(
     <div className={styles.headerWrapper}>
       <div>

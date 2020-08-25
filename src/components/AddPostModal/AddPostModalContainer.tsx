@@ -2,18 +2,10 @@ import React from'react'
 import AddPostModal from './AddPostModal'
 import { connect } from 'react-redux'
 import { addPostIntoDB } from '../../redux/posts/actions'
+import { IAddPostModalProps, IAddPostModalDispatchRedux } from '../../../types'
 
-interface IProps {
-  name: string,
-  userPhoto: string,
-  userID: string
-}
 
-interface IDispatchRedux{
-  addPostIntoDB: (userName: string, postImage: any, postData: string, userID: string, userPhoto: string) => void
-}
-
-class AddPostModalContainer extends React.Component<IProps & IDispatchRedux> {
+class AddPostModalContainer extends React.Component<IAddPostModalProps & IAddPostModalDispatchRedux> {
   addPostIntoDB = (userName: string, postImage: any, postData: string, userID: string, userPhoto: string) => {
     this.props.addPostIntoDB(userName, postImage, postData, userID, userPhoto)
   }
@@ -33,7 +25,7 @@ const mapStateToProps = (state: any) => {
   }
 }
 
-const mapDispatchToProps: IDispatchRedux = {
+const mapDispatchToProps: IAddPostModalDispatchRedux = {
   addPostIntoDB
 }
 

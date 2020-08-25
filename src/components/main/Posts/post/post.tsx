@@ -3,26 +3,12 @@ import styles from'./post.module.scss'
 import { Link } from 'react-router-dom'
 import CommentsSection from './commentsSection/commentsSection'
 import { UserPhotoSection } from '../../../userPhotoSection/userPhotoSection'
-import { IComment } from './commentsSection/comment/comment'
 import Moment from 'react-moment'
 import PostCommentsModal from './postCommentsModal/postCommentsModal'
+import { IPost, IPostDispatchRedux } from '../../../../../types'
 
 
-export interface IPost{
-  likes: string[],
-  owner: string,
-  postComments: IComment[],
-  postID: string,
-  postImg: string,
-  postData: string,
-  uploadTime: any,
-  userID: string,
-  ownerImage: string,
-  likePost: (postID: string, userID: string) => void,
-  unlikePost: (postID: string, userID: string) => void
-}
-
-const Post = (props: IPost): JSX.Element => {
+const Post: React.FC<IPost & IPostDispatchRedux> = (props) => {
  
   const likePost = (postID: string, userID: string) => {
     props.likePost(postID, userID)
@@ -56,7 +42,7 @@ const Post = (props: IPost): JSX.Element => {
           : 
           props.likes.find((item) => {
            return item === props.userID
-          }) === props.userID ? <button onClick={() => unlikePost(props.postID, props.userID)}><i className={`fas fa-heart` + " " + styles.active}></i></button> 
+          }) === props.userID ? <button onClick={() => unlikePost(props.postID, props.userID)}><i className={`fas fa-heart ${styles.active}`}></i></button> 
           : <button onClick={() => likePost(props.postID, props.userID)}><i className="far fa-heart" ></i></button>
       }
       </div>

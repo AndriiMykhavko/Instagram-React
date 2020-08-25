@@ -9,21 +9,10 @@ import { logInUser } from './redux/auth/action'
 import { connect } from 'react-redux';
 import { setPost, resetInitialLoad, setNewPost, turnOnNewPostNotification } from './redux/posts/actions';
 import ProfileContainer from './components/profile/profileContainer'
+import { IAppReduxDispatch, IAppProps } from '../types';
 
-interface IProps{
-  initialeLoad: boolean,
-  userID: string
-}
 
-interface IReduxDispatch{
-  logInUser: (userName: string, userID: string, userPhoto: string) => void,
-  setPost: (postID: string, postData: {}) => void,
-  resetInitialLoad: () => void,
-  setNewPost: (postID: string, postData: {}) => void,
-  turnOnNewPostNotification: () => void  
-}
-
-class App extends React.Component<IProps & IReduxDispatch> {
+class App extends React.Component<IAppProps & IAppReduxDispatch> {
     componentDidMount() {
       firebase.auth().onIdTokenChanged(
           (user) => {
@@ -46,7 +35,7 @@ class App extends React.Component<IProps & IReduxDispatch> {
         } else {
           snapshot.docChanges().forEach((change) => {
             if (change.type === "added") {
-                 if(change.doc.data().userID != this.props.userID) {
+                 if(change.doc.data().userID !== this.props.userID) {
                   this.props.setNewPost(change.doc.id, change.doc.data())
                   this.props.turnOnNewPostNotification()
                  }
@@ -83,7 +72,7 @@ const mapStateToProps = (state: any) => {
   }
 }
 
-const mapDispatchToProps: IReduxDispatch = {
+const mapDispatchToProps: IAppReduxDispatch = {
   logInUser,
   setPost,
   resetInitialLoad,

@@ -1,14 +1,10 @@
 import React from 'react'
 import styles from './comment.module.scss'
 import { UserPhotoSection } from '../../../../../userPhotoSection/userPhotoSection'
+import { IComment } from '../../../../../../../types'
 
-export interface IComment{
-  comment: string,
-  owner: string,
-  ownerImage: string
-}
 
-const Comment = (props: IComment): JSX.Element => {
+const Comment: React.FC<IComment> = (props) => {
   return(
     <div className={styles.comment}>
       

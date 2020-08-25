@@ -1,8 +1,8 @@
 import types from './types'
-import { IPost } from '../../components/main/Posts/post/post'
+import { IPost } from '../../../types';
 
 const initialState = {
-  posts: [] as IPost[],
+  posts: [],
   initialeLoad: true,
   addedNewPost: false,
   newPosts: [] 
@@ -61,10 +61,10 @@ export const postsReducer = (state = initialState, action: any) => {
     }
     case types.ADD_NEW_LIKE_TO_POST: {
       const payload = action.payload
-      const index = state.posts.findIndex((item: any) => {
+      const index = state.posts.findIndex((item: Record<string, IPost>) => {
         return item.postID === payload.postID
       })
-      const posts = [...state.posts]
+      const posts: Array<IPost> = [...state.posts]
       if(index > -1){
         posts[index].likes.push(payload.userID)
       }
@@ -78,7 +78,7 @@ export const postsReducer = (state = initialState, action: any) => {
       const index = state.posts.findIndex((item: any) => {
         return item.postID === payload.postID
       })
-      const posts = [...state.posts]
+      const posts: Array<IPost> = [...state.posts]
       const indexOfLike = posts[index].likes.indexOf(payload.userID);
       if (indexOfLike > -1) {
         posts[index].likes.splice(indexOfLike, 1);
@@ -90,10 +90,10 @@ export const postsReducer = (state = initialState, action: any) => {
     }
     case types.ADD_NEW_COMMENT_TO_POST: {
       const payload = action.payload
-      const index = state.posts.findIndex((item: any) => {
+      const index = state.posts.findIndex((item: Record<string, IPost>) => {
         return item.postID === payload.postID
       })
-      const posts = [...state.posts]
+      const posts: Array<IPost> = [...state.posts]
       const comment = {
         owner: payload.owner,
         ownerImage: payload.ownerImage, 

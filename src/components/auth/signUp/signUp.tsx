@@ -6,7 +6,6 @@ import { FormControl } from '../../common/formsControl/formsControl';
 import { connect } from 'react-redux';
 import { registration } from '../../../redux/auth/action'
 import styles from '../signIn/signInStyles.module.scss'
-import { IPropsSignIn } from '../signIn/signIn'
 
 
 const maxLendthField10 = maxLengthCreator(10);
@@ -36,11 +35,15 @@ const SignUpForm: React.FC <InjectedFormProps> = (props) => {
 
 const LoginReduxForm = reduxForm({form: 'login'})(SignUpForm)
 
+interface IProps{
+  isAuth: boolean
+}
+
 interface IReduxDispatch{
   registration: (name: string, email: string, password: string) => void
 }
 
-const Login: React.FC<IPropsSignIn & IReduxDispatch> = (props) => {
+const Login: React.FC<IProps & IReduxDispatch> = (props) => {
     const onSubmit = (formData: any) => {
         props.registration(formData.name, formData.email, formData.password);
     }

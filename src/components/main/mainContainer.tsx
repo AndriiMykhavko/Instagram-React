@@ -6,20 +6,10 @@ import style from './mainContainer.module.scss'
 import PostsContainer from './Posts/postsConatainer'
 import AddPostModalContainer from '../AddPostModal/AddPostModalContainer'
 import { turnOffNewPostNotification, resetNewPosts, setPost } from '../../redux/posts/actions'
+import { IMainProps, IMainDispatchRedux } from '../../../types'
 
-interface IProps {
-  isAuth: boolean,
-  addedNewPost: boolean,
-  newPosts: any[]
-}
 
-interface IDispatchRedux{
-  turnOffNewPostNotification: () => void,
-  resetNewPosts: () => void,
-  setPost: (postID: string, postData: any) => void
-}
-
-class MainContainer extends React.Component<IProps & IDispatchRedux>{
+class MainContainer extends React.Component<IMainProps & IMainDispatchRedux>{
   addingNewPostToState = () => {
     this.props.newPosts.map((post) => {
       this.props.setPost(post.postID, post.postData)
@@ -62,7 +52,7 @@ const MapStateToProps = (state: any) => {
   }
 }
 
-const mapDispatchToProps: IDispatchRedux = {
+const mapDispatchToProps: IMainDispatchRedux = {
   turnOffNewPostNotification,
   resetNewPosts,
   setPost

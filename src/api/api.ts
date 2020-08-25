@@ -1,7 +1,8 @@
+import { IAuth, IUserMamage, IManagePost } from './../../types.d';
 import * as firebase from "firebase";
 
 
-export const authAPI: any = {
+export const authAPI: IAuth = {
   login(email: string, password: string) {
     return firebase.auth().signInWithEmailAndPassword(email, password);
   },
@@ -12,12 +13,7 @@ export const authAPI: any = {
     return firebase.auth().signOut();
   },
   googleAuth(){
-    firebase.auth().getRedirectResult().then(function(result: any) {
-      if (result.credential) {
-        let token = result.credential.accessToken;
-      }
-      let user = result.user;
-    });
+    firebase.auth().getRedirectResult();
     let provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('profile');
     provider.addScope('email');
@@ -25,12 +21,12 @@ export const authAPI: any = {
   }
 };
 
-export const userMamageAPI: any = {
+export const userMamageAPI: IUserMamage = {
   cnangeUserPhoto(userName: string, image: any){
     firebase.storage().ref(`images/` + userName + `/` + image.name).put(image)
     .on(
       "state_changed",
-      (snapshot:any) =>{},
+      () =>{},
       (error: any) => {
         console.log(error);
       },
@@ -56,8 +52,8 @@ export const userMamageAPI: any = {
   }
 }
 
-export const managePostAPI: any = {
-  uploadImage(name: string, image: any) {
+export const managePostAPI: IManagePost = {
+  uploadImage(name: string, image: File) {
     return firebase.storage().ref(`images/` + name + `/` + image.name).put(image)
   },
   uploadPostData(name: string, postImage: string, postData: string, uploadTime: string, userID: string, userPhoto: string) {

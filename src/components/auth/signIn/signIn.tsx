@@ -8,7 +8,7 @@ import { login, googleAuth } from '../../../redux/auth/action'
 import styles from './signInStyles.module.scss'
 import phone from '../../../assets/images/phone.png'
 
-const SignInForm: React.FC <InjectedFormProps> = (props) => {
+const SignInForm: React.FC<InjectedFormProps> = (props) => {
     return (
       <>
         <form onSubmit={props.handleSubmit} >

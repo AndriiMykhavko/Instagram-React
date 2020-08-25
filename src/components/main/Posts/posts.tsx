@@ -1,15 +1,9 @@
 import React from 'react'
 import Post from './post/post'
-import { IPost } from './post/post'
+import { IPostsDispatchRedux, IPostsProps, IPost } from '../../../../types'
 
-interface IProps{
-  posts: IPost[],
-  userID: string,
-  likePost: (postID: string, userID: string) => void,
-  unlikePost: (postID: string, userID: string) => void
-}
 
-const Posts = (props: IProps): JSX.Element => {
+const Posts: React.FC<IPostsProps & IPostsDispatchRedux> = (props): JSX.Element => {
   let postsElements = props.posts.map( (post: IPost, index) => 
   <Post likes={post.likes} owner={post.owner} key={index}
         postComments={post.postComments} postID={post.postID} postImg={post.postImg}

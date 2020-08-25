@@ -3,18 +3,10 @@ import { connect } from 'react-redux'
 import AddNewCommentForm from './addNewCommentForm'
 import { addCommetnIntoDB } from '../../../../../../redux/posts/actions'
 import {reset} from 'redux-form';
+import { IAddNewCommentProps, IAddNewCommentDispatchRedux } from '../../../../../../../types';
 
-interface IProps{
-  postID: string,
-  owner: string,
-  ownerImage: string
-}
 
-interface IDispatchRedux{
-  addNewComment: (postID: string, owner: string, ownerImage: string, formData: any) => void
-}
-
-class AddNewCommentFormContainer extends React.Component<IProps & IDispatchRedux> {
+class AddNewCommentFormContainer extends React.Component<IAddNewCommentProps & IAddNewCommentDispatchRedux> {
   addNewComment = (formData: any) => {
     this.props.addNewComment(this.props.postID, this.props.owner, this.props.ownerImage, formData.newCommentData)
   }
