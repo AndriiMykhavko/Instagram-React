@@ -26,7 +26,7 @@ class App extends React.Component<IAppProps & IAppReduxDispatch> {
       );
 
       firebase.firestore().collection("usersPosts")
-      .orderBy("uploadTime", "asc").onSnapshot((snapshot) => {
+      .orderBy("timestamp", "asc").onSnapshot((snapshot) => {
         if(this.props.initialeLoad){
           snapshot.docs.map((doc) => {
             this.props.setPost(doc.id, doc.data())

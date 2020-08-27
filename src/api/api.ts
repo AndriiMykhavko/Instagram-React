@@ -66,7 +66,8 @@ export const managePostAPI: IManagePost = {
       postComments: [],
       whoLikedPost: [],
       userID: userID,
-      userPhoto: userPhoto
+      userPhoto: userPhoto,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
     });
   },
   uploadWhoLikedPostData(postID: string, userID: string) {
