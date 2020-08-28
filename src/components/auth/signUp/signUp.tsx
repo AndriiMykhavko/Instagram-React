@@ -8,7 +8,7 @@ import { registration } from '../../../redux/auth/action'
 import styles from '../signIn/signInStyles.module.scss'
 
 
-const maxLendthField10 = maxLengthCreator(10);
+const maxLendthField15 = maxLengthCreator(15);
 const minLengthField7 = minLengthCreator(7);
 
 
@@ -17,13 +17,13 @@ const SignUpForm: React.FC <InjectedFormProps> = (props) => {
         <>
           <form onSubmit={props.handleSubmit} >
            <div className={styles.margBottom}>
-              <Field placeholder={"Name"} el="input" type="text" validate={[required, emailValidation, maxLendthField10]} name={"name"} component={FormControl} />
+              <Field placeholder={"Name"} el="input" type="text" validate={[required, maxLendthField15]} name={"name"} component={FormControl} />
             </div>
             <div className={styles.margBottom}>
-              <Field placeholder={"Email"} el="input" type="text" validate={[required]} name={"email"} component={FormControl} />
+              <Field placeholder={"Email"} el="input" type="text" validate={[required, emailValidation]} name={"email"} component={FormControl} />
             </div>
             <div className={styles.margBottom}>
-              <Field placeholder={"Password"} el="input" type="password" validate={[required, minLengthField7, maxLendthField10]} name={"password"} component={FormControl} />
+              <Field placeholder={"Password"} el="input" type="password" validate={[required, minLengthField7, maxLendthField15]} name={"password"} component={FormControl} />
             </div>
             <div>
               <button className={styles.signInButton}>Sign Up</button>
